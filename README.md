@@ -1,6 +1,6 @@
 # SecStructArtist
 
-This is a package allows to include pretty secondary structure schemes in 
+This package allows to include pretty secondary structure schemes in 
 matplotlib plots.
 
 ![example_rmsf.png](./examples/example_rmsf.png)
@@ -110,8 +110,10 @@ artist.linewidth = .8
 # Set settings of "H" - Helices
 artist["H"].fillcolor = (.9, 0., 0.)
 artist["H"].shadecolor = (.7, 0., 0.)
+artist["H"].ribbon_period = 3.6
+artist["H"].ribbon_width = 2.2
 # Set settings of "S" - beta-Sheets
-artist["S"].arrow_length = 3
+artist["S"].arrow_length = 2.7
 artist["S"].fillcolor = "#dc0"
 artist["S"].height = .5
 # Set settings of "L" - loop
