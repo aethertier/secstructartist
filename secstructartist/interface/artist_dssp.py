@@ -42,19 +42,20 @@ class SecStructArtistDssp(SecStructArtist):
             list of all the objects drawn.
     """
     
-    def __init__(self, height=1., linewidth=1., zorder=10,  helix_kwargs=None, 
-                    loop_kwargs=None, sheet_kwargs=None):
+    def __init__(self, height=1., linewidth=1., zorder=10, 
+                    G_kwargs=None, H_kwargs=None, I_kwargs=None, E_kwargs=None,
+                    B_kwargs=None, S_kwargs=None, T_kwargs=None, C_Kwargs=None):
         self.height = height
         self.linewidth = linewidth
         self.zorder = zorder
-        loop = art.LoopArtist(self, **(loop_kwargs or {}))
-        self.artists = {
-            "G": art.HelixArtist(self, **(helix_kwargs or {})), 
-            "H": art.HelixArtist(self, **(helix_kwargs or {})), 
-            "I": art.HelixArtist(self, **(helix_kwargs or {})),
-            "E": art.SheetArtist(self, **(sheet_kwargs or {})),
-            "B": art.SheetArtist(self, **(sheet_kwargs or {})),
-            "S": art.LoopArtist(self, **(loop_kwargs or {})),
-            "T": art.LoopArtist(self, **(loop_kwargs or {})),
-            "c": loop, "C": loop, " ": loop
-        }
+        self._artists = {}
+        self["G"] = art.HelixArtist(**(G_kwargs or {})) 
+        self["H"] = art.HelixArtist(**(H_kwargs or {})) 
+        self["I"] = art.HelixArtist(**(I_kwargs or {}))
+        self["E"] = art.SheetArtist(**(E_kwargs or {}))
+        self["B"] = art.SheetArtist(**(B_kwargs or {}))
+        self["S"] = art.LoopArtist(**(S_kwargs or {}))
+        self["T"] = art.LoopArtist(**(T_kwargs or {}))
+        self["C"] = art.LoopArtist(**(C_Kwargs or {}))
+        self["c"] =  self["C"]
+        self[" "] =  self["C"]
