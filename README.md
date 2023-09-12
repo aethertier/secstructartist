@@ -135,8 +135,8 @@ Distributed under the GNU General Public License v3 (GPLv3) License.
 
 ## Contributing
 
-If you find a bug :bug:, please open a [bug report]().
-If you have an idea for an improvement or new feature :rocket:, please open a [feature request]().
+If you find a bug :bug:, please open a [bug report](https://github.com/bickeld/secstructartist/issues/new?labels=bug).
+If you have an idea for an improvement or new feature :rocket:, please open a [feature request](https://github.com/bickeld/secstructartist/issues/new?labels=enhancement).
 
 ## Authors
 
