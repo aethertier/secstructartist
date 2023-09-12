@@ -5,7 +5,7 @@ matplotlib plots.
 
 ![example_rmsf.png](./examples/example_rmsf.png)
 
-# Table of content
+## Table of content
 
 * [Installation](#installation)
     * [Prerequisites](#prerequisites)
