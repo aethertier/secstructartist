@@ -60,7 +60,7 @@ package.
 
 2. Clone the repository:
     ```
-    git clone XXX
+    git clone https://github.com/bickeld/secstructartist.git
     cd secstructartist
     ```
 
