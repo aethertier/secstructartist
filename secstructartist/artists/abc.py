@@ -54,11 +54,8 @@ class BlankArtist(ElementArtist):
             cls._instance = super(BlankArtist, cls).__new__(cls, *args, **kwargs)
         return cls._instance
 
-    def __init__(self, owner=None, height=1, linewidth=1, zorder=1):
-        self.owner = owner
-        self.height = height
-        self.linewidth = linewidth
-        self.zorder = zorder
+    def __init__(self, height=42, linewidth=42, zorder=42, owner: "SecStructArtist" = None):
+        super().__init__(height, linewidth, zorder, owner)
     
     def draw(self, xpos: Iterable[float], ypos: float, widths, ax: Axes) -> DrawnSecStructElement:
-        return DrawnSecStructElement("Unknown")
+        return DrawnSecStructElement("N/A")
