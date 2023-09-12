@@ -72,9 +72,9 @@ package.
 
 ## Usage
 
-In the `examples/` directory there is a Jupyter notebook with plenty of code
-examples for simple and advanced use cases. So, I will limit myself to the very 
-basics here.
+In the `examples/` directory there is a Jupyter notebook ([link](./examples/examples.ipynb))
+with plenty of code examples for simple and advanced use cases. Therefore, only 
+the  basics usage will be shown here.
 
 ### A simple example
 
