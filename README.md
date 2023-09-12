@@ -31,6 +31,8 @@ matplotlib plots.
 
 ### Installation from PyPI
 
+TODO
+<!-- 
 This is the recommended way to install the package.
 
 1. Create a virtual environment (optional but recommended):
@@ -43,6 +45,7 @@ This is the recommended way to install the package.
     ```
     pip install secstructartist
     ```
+-->
 
 ### Installation from GitHub
 
