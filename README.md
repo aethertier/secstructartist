@@ -1,4 +1,4 @@
-# SecStructArtist
+# secstructartist
 
 This package allows to include pretty secondary structure schemes in 
 matplotlib plots.

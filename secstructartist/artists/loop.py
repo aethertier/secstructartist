@@ -23,10 +23,10 @@ class LoopArtist(ElementArtist):
             global linewisth is used.
         linecolor: color string or color tuple
             The color of the lines representing the loop. Any matplotlib-recognized 
-            color option works, e.g. named colors, color tuples, hexstrings.
+            color option works, e.g., named colors, color tuples, hexstrings.
         fillcolor: color string or color tuple
             The color of the filling of the loop, if a rectangular loop is 
-            drawn. Only used if `height` is set.
+            drawn. Only used if `height` is set. (default: linecolor)
 
     Methods:
     --------
@@ -36,11 +36,11 @@ class LoopArtist(ElementArtist):
     
     ELEMENT = "Loop"
 
-    def __init__(self, linecolor="k", fillcolor="0.97", height=None, 
+    def __init__(self, linecolor="k", fillcolor=None, height=None, 
                     linewidth=None, zorder=None, owner: "SecStructArtist" = None):
         super().__init__(height, linewidth, zorder, owner)
         self.linecolor = linecolor
-        self.fillcolor = fillcolor
+        self.fillcolor = fillcolor or linecolor
 
     def draw(self, xpos: Iterable[float], ypos: float, widths, ax: Axes) -> DrawnSecStructElement:
         x0, x_ = np.min(xpos), np.max(xpos)

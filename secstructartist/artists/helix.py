@@ -7,58 +7,7 @@ from .abc import ElementArtist
 from ..utils.utils import DrawnSecStructElement
 
 
-class HelixArtistSimple(ElementArtist):
-    """
-    Class to draw helices 
-    
-    Helices are represented, either by a single rectangle
-
-    Attributes:
-    -----------
-        height: float
-            If set, helices use that value instead of the global height.
-        linewidth: float
-            The width of the edges in the representation. By default the global 
-            linewidth is used.
-        linecolor: color string or color tuple  
-            The color of the edges of the helix representation (default: 'k').
-        fillcolor: color string or color tuple 
-            The color of the filling of the helix representation. (default: '0.97')
-    
-    Methods:
-    --------
-        draw(xpos, ypos, widths, ax)
-            Draws a loop from `min(xpos)` to `max(xpos+widths)`.
-    """
-
-    ELEMENT = "Helix"
-
-    def __init__(self, linecolor="k", fillcolor="0.97", height=None, 
-                    linewidth=None, zorder=None, owner: "SecStructArtist" = None):
-        super().__init__(height, linewidth, zorder, owner)
-        self.linecolor = linecolor
-        self.fillcolor = fillcolor
-
-    def draw(self, xpos: Iterable[float], ypos: float, widths, ax: Axes) -> DrawnSecStructElement:
-        x0, x_ = np.min(xpos), np.max(xpos)
-        if np.ndim(widths) > 0:
-            assert len(widths) == len(xpos), "Widths and xpos must have the same number of elements."
-            x1 = x_ + float(widths[len(xpos)-1])
-        else:
-            x1 = x_ + float(widths)
-        y0, y1 = ypos - .5 * self.height, ypos + .5 * self.height
-        lines = [
-            ax.plot([x0, x0, x1, x1, x0], [y0, y1, y1, y0, y0], 
-                    color=self.linecolor, linewidth=self.linewidth, zorder=self.zorder)
-        ]
-        collec = [
-            ax.fill_between([x0, x1], [y0, y0], [y1, y1],
-                            linewidth=0., color=self.fillcolor, zorder=self.zorder-.1)
-        ]
-        return DrawnSecStructElement(self.ELEMENT, x0, x_, lines, collec)
-
-
-class HelixArtistFancy(ElementArtist):
+class HelixArtist(ElementArtist):
     """
     Class to draw helices 
     
