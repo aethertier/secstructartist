@@ -3,7 +3,7 @@
 This package allows to include pretty secondary structure schemes in 
 matplotlib plots.
 
-![example_rmsf.png](https://github.com/bickeld/secstructartist/blob/main/examples/example_rmsf.png)
+![](https://github.com/bickeld/secstructartist/blob/main/examples/example_rmsf.png)
 
 ## Table of content
 
@@ -86,7 +86,7 @@ fig, _objs = ssa.draw(secstruct_str)
 fig.savefig("example0.png")
 ```
 
-![example0.png](https://github.com/bickeld/secstructartist/blob/main/examples/example0.png)
+![](https://github.com/bickeld/secstructartist/blob/main/examples/example0.png)
 
 ### Customizing your plots
 
@@ -129,7 +129,7 @@ ax.set_ylim([3, 4])
 fig.savefig("example1.png")
 ```
 
-![example1.png](https://github.com/bickeld/secstructartist/blob/main/examples/example1.png)
+![](https://github.com/bickeld/secstructartist/blob/main/examples/example1.png)
 
 ## License
 
@@ -137,9 +137,9 @@ Distributed under the GNU General Public License v3 (GPLv3) License.
 
 ## Contributing
 
-If you find a bug :bug:, please open a [bug report](https://github.com/bickeld/secstructartist/issues/new?labels=bug).
-If you have an idea for an improvement or new feature :rocket:, please open a [feature request](https://github.com/bickeld/secstructartist/issues/new?labels=enhancement).
+If you find a bug, please open a [bug report](https://github.com/bickeld/secstructartist/issues/new?labels=bug).
+If you have an idea for an improvement or new feature, please open a [feature request](https://github.com/bickeld/secstructartist/issues/new?labels=enhancement).
 
 ## Authors
 
-[![ORCID](https://orcid.org/sites/default/files/images/orcid_16x16.png)](https://orcid.org/0000-0003-0332-8338) - David Bickel
+[![](https://orcid.org/sites/default/files/images/orcid_16x16.png)](https://orcid.org/0000-0003-0332-8338) - David Bickel
