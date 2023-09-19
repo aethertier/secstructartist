@@ -5,22 +5,21 @@ with open("README.md", "r", encoding="utf-8") as fhandle:
 
 setup(
     name="secstructartist",
-    version="1.0.10",
+    version="1.1.0",
     author="David Bickel",
-    description="Module to visualize protein secondary structure in matplotlib plots",
+    description="Module to visualize protein secondary structure in matplotlib",
     license="OSI Approved :: GNU General Public License v3 (GPLv3)",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://bitbucket.org/bio2byte/constava/",
+    url="https://github.com/bickeld/secstructartist",
     packages=find_packages(),
     include_package_data=True,
     classifiers=[
         "Natural Language :: English",
-        "Programming Language :: Python :: 3.6",
-        "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
         "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
         "Operating System :: OS Independent",
         "Topic :: Scientific/Engineering :: Bio-Informatics",
@@ -29,7 +28,7 @@ setup(
         "Intended Audience :: Education",
         "Development Status :: 5 - Production/Stable"
     ],
-    python_requires=">=3.6, <3.11",
+    python_requires=">=3.8",
     install_requires=[
         "numpy",
         "matplotlib",

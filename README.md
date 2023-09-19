@@ -23,7 +23,7 @@ matplotlib plots.
 ### Prerequisites
 
 * **General prerequisites:**
-    * Python 3.6 or higher
+    * Python 3.8 or higher
     * pip
 * **Third-party python packages:**
     * matplotlib
@@ -31,8 +31,6 @@ matplotlib plots.
 
 ### Installation from PyPI
 
-TODO
-<!-- 
 This is the recommended way to install the package.
 
 1. Create a virtual environment (optional but recommended):
@@ -45,7 +43,6 @@ This is the recommended way to install the package.
     ```
     pip install secstructartist
     ```
--->
 
 ### Installation from GitHub
 
@@ -114,7 +111,7 @@ artist["H"].ribbon_period = 3.6
 artist["H"].ribbon_width = 2.2
 # Set settings of "S" - beta-Sheets
 artist["S"].arrow_length = 2.7
-artist["S"].fillcolor = "#dc0"
+artist["S"].fillcolor = "#ddcc00"
 artist["S"].height = .5
 # Set settings of "L" - loop
 artist["L"].linecolor = "blue"
