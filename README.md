@@ -3,7 +3,7 @@
 This package allows to include pretty secondary structure schemes in 
 matplotlib plots.
 
-![example_rmsf.png](./examples/example_rmsf.png)
+![example_rmsf.png](https://github.com/bickeld/secstructartist/blob/main/examples/example_rmsf.png)
 
 ## Table of content
 
@@ -69,7 +69,7 @@ package.
 
 ## Usage
 
-In the `examples/` directory there is a Jupyter notebook ([link](./examples/examples.ipynb))
+In the `examples/` directory there is a Jupyter notebook ([link](https://github.com/bickeld/secstructartist/blob/main/examples/examples.ipynb))
 with plenty of code examples for simple and advanced use cases. Therefore, only 
 the  basics usage will be shown here.
 
@@ -86,7 +86,7 @@ fig, _objs = ssa.draw(secstruct_str)
 fig.savefig("example0.png")
 ```
 
-![example0.png](./examples/example0.png)
+![example0.png](https://github.com/bickeld/secstructartist/blob/main/examples/example0.png)
 
 ### Customizing your plots
 
@@ -129,7 +129,7 @@ ax.set_ylim([3, 4])
 fig.savefig("example1.png")
 ```
 
-![example1.png](./examples/example1.png)
+![example1.png](https://github.com/bickeld/secstructartist/blob/main/examples/example1.png)
 
 ## License
 

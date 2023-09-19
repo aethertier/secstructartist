@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fhandle:
 
 setup(
     name="secstructartist",
-    version="1.1.0",
+    version="1.1.1",
     author="David Bickel",
     description="Module to visualize protein secondary structure in matplotlib",
     license="OSI Approved :: GNU General Public License v3 (GPLv3)",
