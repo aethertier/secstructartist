@@ -3,14 +3,14 @@
 This package allows to include pretty secondary structure schemes in 
 matplotlib plots.
 
-![](https://github.com/bickeld/secstructartist/blob/main/examples/example_rmsf.png)
+![example_rmsf.png](https://github.com/bickeld/secstructartist/blob/main/examples/example_rmsf.png?raw=true)
 
 ## Table of content
 
 * [Installation](#installation)
     * [Prerequisites](#prerequisites)
     * [Installation from PyPI](#installation-from-pypi)
-    * [installation-from-github](#installation-from-github)
+    * [Installation from GitHub](#installation-from-github)
 * [Usage](#usage)
     * [A simple example](#a-simple-example)
     * [Customizing your plots](#customizing-your-plots)
@@ -86,7 +86,7 @@ fig, _objs = ssa.draw(secstruct_str)
 fig.savefig("example0.png")
 ```
 
-![](https://github.com/bickeld/secstructartist/blob/main/examples/example0.png)
+![example0.png](https://github.com/bickeld/secstructartist/blob/main/examples/example0.png)
 
 ### Customizing your plots
 
@@ -129,7 +129,7 @@ ax.set_ylim([3, 4])
 fig.savefig("example1.png")
 ```
 
-![](https://github.com/bickeld/secstructartist/blob/main/examples/example1.png)
+![example1.png](https://github.com/bickeld/secstructartist/blob/main/examples/example1.png?raw=true)
 
 ## License
 
@@ -142,4 +142,4 @@ If you have an idea for an improvement or new feature, please open a [feature re
 
 ## Authors
 
-[![](https://orcid.org/sites/default/files/images/orcid_16x16.png)](https://orcid.org/0000-0003-0332-8338) - David Bickel
+[![ORCHiD](https://orcid.org/sites/default/files/images/orcid_16x16.png)](https://orcid.org/0000-0003-0332-8338) - David Bickel
