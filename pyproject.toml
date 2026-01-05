@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools >= 61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "secstructartist"
+description = "Module to visualize protein secondary structure in matplotlib"
+version = "1.1.4"
+readme = {file = "README.md", content-type = "text/markdown"}
+license = {file = "LICENSE"}
+authors = [
+    {name = "David Bickel"},
+]
+requires-python = ">= 3.8"
+dependencies = [
+    "numpy",
+    "matplotlib",
+]
+classifiers=[
+    "Natural Language :: English",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",   
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: Education",
+    "Topic :: Scientific/Engineering :: Bio-Informatics",
+    "Topic :: Scientific/Engineering :: Visualization",
+    "Development Status :: 5 - Production/Stable",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12"
+]
+keywords = ['secondary structure', 'protein', 'biology']
+
+[project.urls]
+Repository = "https://github.com/bickeld/secstructartist"
+
+[tool.setuptools]
+packages = ["secstructartist"]
