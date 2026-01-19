@@ -1,7 +1,8 @@
 from pathlib import Path
-from typing import Dict, Set, Iterable, Optional, Union
+from typing import Dict, Iterable, List, Optional, Set, Tuple, Union
 from matplotlib.axes import Axes
 from matplotlib.pyplot import subplots
+from matplotlib.legend_handler import HandlerTuple
 
 from .drawstyle import DrawStyle
 from .elementartist import ElementArtist
@@ -9,26 +10,41 @@ from .utils import aggregate
 
 
 class SecStructArtist():
-    """Class to draw secondary structure representations
+    """
+    Renderer for one-dimensional secondary structure schematics.
 
-    All secondary structure representations are typically drawn in an existing
-    maplotlib axis.
+    This class provides a high-level interface for drawing secondary structure
+    strings (e.g. ``"HHHHEEELL"``) into a Matplotlib Axes. Each secondary
+    structure symbol is mapped to an :class:`ElementArtist` which controls
+    how the corresponding element is rendered.
     """
     def __init__(
         self,
         artists: Optional[Dict[str,ElementArtist]] = None,
         **drawstyle_kwargs
     ):
+        """
+        Parameters
+        ----------
+        artists : dict of str to ElementArtist, optional
+            Mapping from secondary structure symbols to element artists.
+
+        **drawstyle_kwargs
+            Keyword arguments forwarded to :class:`DrawStyle` to initialize
+            the drawing style.
+        """
         self._artists = dict(artists)
         self._drawstyle: DrawStyle = DrawStyle(**drawstyle_kwargs)
         self._drawn_elements: Set = set()
     
     @property
     def artists(self) -> Dict[str,ElementArtist]:
+        """dict of str to ElementArtist"""
         return self._artists
 
     @property
     def drawstyle(self) -> DrawStyle:
+        """DrawStyle: Current drawing style used for rendering."""
         return self._drawstyle
     
     def __getattr__(self, attrname):
@@ -45,42 +61,50 @@ class SecStructArtist():
         x: float = 1., y: float = 1., *, 
         ax: Optional[Axes] = None,
         **drawstyle_kwargs
-    ): 
+    ):
         """
-        Draws the secondary structure schema into the axis.
+        Draw a secondary structure schematic.
 
-        The secondary structure is rendered as a one-dimensional schematic,
-        where each residue is represented by a graphical element defined by
-        the selected :class:`SecStructArtist`. Consecutive residues with the
-        same secondary-structure label are grouped and drawn as a single
-        continuous element
+        The secondary structure is rendered as a one-dimensional schematic in
+        which consecutive residues with the same secondary-structure symbol
+        are grouped and drawn as a single continuous element.
 
         Parameters
         ----------
-        secstruct : str or Iterable[str]
-            Residue-wise secondary structure lables to be drawn. Every label
-            should be present in the self.artists dictionary.
+        secstruct : str or iterable of str
+            Residue-wise secondary structure symbols to be drawn. Each symbol
+            must be present in ``self.artists``.
 
-        x : float
-            The position of the first residue in the x-axis. (default: 1.)
+        x : float, default=1.0
+            X-coordinate of the first residue.
 
-        y : float
-            The position of the first residue in the y-axis. (default: 1.)
-        
-        ax : Axes
-            Matplotlib Axes the scheme will be drawn to. If `None` a new Axes
-            object will be created.
+        y : float, default=1.0
+            Y-coordinate of the schematic baseline.
+
+        ax : matplotlib.axes.Axes, optional
+            Axes into which the schematic is drawn. If `None`, a new Axes is
+            created.
 
         **drawstyle_kwargs
-            DrawStyle keywords like `linewidth`, `height`, `step`, or `zorder`.
-            The scheme will be draw with the modified drawstyle, without altering
-            the attribute in SecStructAritst.
+            Keyword arguments used to update the current :class:`DrawStyle`.
+
+        Returns
+        -------
+        list
+            List of Matplotlib artists created during drawing.
         """
-        # Create local drawstyle
-        drawstyle = self.drawstyle.with_updates(**drawstyle_kwargs)
+        if drawstyle_kwargs:
+            self.drawstyle = self.drawstyle.with_updates(**drawstyle_kwargs)
         if ax is None:
             fig, ax = subplots(figsize=(.1*len(secstruct),.5))
-            ax.set_ylim([y - .7 * drawstyle.height, y + .7 * drawstyle.height])
+            ax.set_ylim([
+                y - .7 * self.drawstyle.height, 
+                y + .7 * self.drawstyle.height
+            ])
+            ax.set_xlim([
+                x - .5 * self.drawstyle.step, 
+                x + (len(secstruct) + .5) * self.drawstyle.step, 
+            ])
 
         xpos = x
         drawn_elements = []
@@ -89,15 +113,69 @@ class SecStructArtist():
                 raise ValueError(f"Missing element artist for: '{elem}'")
             
             artist = self.artists[elem]
-            drawn = artist.draw(xpos, y, length=elem_length, ax=ax, drawstyle=drawstyle)
-            drawn_elements.append(drawn)
+            drawn = artist.draw(xpos, y, length=elem_length, ax=ax, drawstyle=self.drawstyle)
+            drawn_elements.extend(drawn)
 
-            xpos += elem_length * drawstyle.step
+            xpos += elem_length * self.drawstyle.step
             self._drawn_elements.add(elem)
 
         return drawn_elements
+    
+    def legend(self, *, ax: Axes, all_elements: bool=False, **legend_kwargs):
+        """
+        Add a legend for the rendered secondary structure elements.
 
+        Parameters
+        ----------
+        ax : matplotlib.axes.Axes
+            Axes to which the legend is added.
+
+        all_elements : bool, default=False
+            If True, include all registered elements. If False, include only
+            elements that have been drawn.
+
+        **legend_kwargs
+            Additional keyword arguments passed to ``Axes.legend``.
+
+        Returns
+        -------
+        matplotlib.legend.Legend
+            The created legend instance.
+        """
+        handles, labels = self.get_legend_handles_labels()
+        print(handles, labels)
+        legend = ax.legend(handles, labels, handler_map={tuple: HandlerTuple(ndivide=None)}, **legend_kwargs)
+        legend.set_zorder(self.drawstyle.zorder + 1)
+        return legend
+    
+    def get_legend_handles_labels(self, only_drawn_elements: bool=True) -> Tuple[List, List]:
+        """
+        Return legend handles and labels.
+
+        Parameters
+        ----------
+        only_drawn_elements : bool, default=True
+            If True, return handles only for elements that have been drawn.
+
+        Returns
+        -------
+        handles : list
+            List of legend handles.
+
+        labels : list
+            Corresponding legend labels.
+        """
+        handles, labels = [], []
+        for elem, artist in self.artists.items():
+            if only_drawn_elements and elem not in self._drawn_elements:
+                continue
+            hdl, lbl = artist.get_legend_handle_label(self.drawstyle)
+            handles.append(hdl)
+            labels.append(lbl)
+        return handles, labels
+    
     def reset_drawn_elements(self):
+        """Reset the set of elements marked as drawn."""
         self._drawn_elements = set()
 
     def to_config(self, configfile: Optional[Union[Path, str]] = None):
