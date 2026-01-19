@@ -1,3 +1,3 @@
 from .constants import SSA_VERSION as __version__
-from .artist.secstruct import SecStructArtist
-from .artist.element import ElementArtist
+from .core.secstructartist import SecStructArtist
+from .core.elementartist import ElementArtist
