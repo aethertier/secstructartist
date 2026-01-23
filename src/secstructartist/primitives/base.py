@@ -1,6 +1,6 @@
 from __future__ import annotations
 import abc
-from typing import Any, Optional, Union, Tuple, TYPE_CHECKING
+from typing import Any, Dict, Optional, Tuple, TYPE_CHECKING, Union
 
 if TYPE_CHECKING:
     from matplotlib.axes import Axes
@@ -105,3 +105,16 @@ class PrimitiveArtist(abc.ABC):
             Matplotlib artist suitable for use as a legend handle.
         """
         pass
+
+    def to_dict(self, *attrnames: str) -> Dict[str, Any]:
+        selfdict = {
+            'type': type(self).__name__,
+            'xy_offset': [self.x_offset, self.y_offset],
+            'height_scalar': self.height_scalar,
+            'linewidth_scalar': self.linewidth_scalar,
+            'zorder_offset': self.zorder_offset,
+            'linecolor': self.linecolor,
+            'fillcolor': self.fillcolor,
+        }
+        selfdict.update({a: getattr(self, a) for a in attrnames})
+        return selfdict

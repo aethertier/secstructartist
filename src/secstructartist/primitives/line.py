@@ -1,5 +1,5 @@
 from __future__ import annotations
-from typing import  TYPE_CHECKING
+from typing import Any, Dict, TYPE_CHECKING
 from matplotlib.lines import Line2D
 from .base import PrimitiveArtist
 
@@ -9,7 +9,12 @@ if TYPE_CHECKING:
 
 
 class LinePrimitive(PrimitiveArtist):
+    """
+    Line primitive used for drawing linear secondary structure elements.
 
+    This primitive draws a horizontal line segment whose length is determined
+    by the number of residues in the element.
+    """
     def draw(self, x: float, y: float, length: int, ax: Axes, drawstyle: DrawStyle) -> Line2D:
         x0, y0 = x + self.x_offset, y + self.y_offset
         x1 = x0 + drawstyle.step * length
@@ -20,8 +25,6 @@ class LinePrimitive(PrimitiveArtist):
             zorder=drawstyle.zorder - .1 + self.zorder_offset
         )
         ax.add_line(line)
-        ax.update_datalim(line.get_xydata())
-        ax.autoscale_view()
         return line
 
     def get_legend_handle(self, drawstyle: DrawStyle) -> Line2D:
@@ -30,3 +33,6 @@ class LinePrimitive(PrimitiveArtist):
             color=self.linecolor,
         )
         return line
+    
+    def to_dict(self) -> Dict[str, Any]:
+        return super().to_dict()

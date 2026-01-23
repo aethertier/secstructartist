@@ -1,11 +1,12 @@
 from __future__ import annotations
-from typing import TYPE_CHECKING
+from typing import Any, Dict, TYPE_CHECKING
 from matplotlib.patches import Polygon
 from .base import PrimitiveArtist
 
 if TYPE_CHECKING:
     from matplotlib.axes import Axes
     from ..core.drawstyle import DrawStyle
+
 
 class ArrowPrimitive(PrimitiveArtist):
     """
@@ -103,3 +104,6 @@ class ArrowPrimitive(PrimitiveArtist):
             facecolor = self.fillcolor,
         )
         return sheet
+    
+    def to_dict(self) -> Dict[str, Any]:
+        return super().to_dict('arrow_tip_length', 'height_scalar2')
