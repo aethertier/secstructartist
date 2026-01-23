@@ -198,4 +198,7 @@ class SecStructArtist():
         *,
         format: FileFormat = 'auto'
     ) -> SecStructArtist:
-        pass # TODO
+        """Initializes a SecStructArtist based on a config file"""
+        from .io import SSAConfigReader
+        reader = SSAConfigReader()
+        reader.load(configfile, format=format)

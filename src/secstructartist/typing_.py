@@ -10,7 +10,7 @@ __all__ = [
     'ColorType',
     'DrawnArtist',
     'LegendHandlesLabels',
-    'FileOrPath',
+    'PathOrFile',
     'ArtistConfig'
 ]
 
@@ -29,11 +29,11 @@ LegendHandlesLabels = Tuple[
 #
 # --- File IO-related types ---
 #
-FileOrPath = Union[IO[str], Path, str]
+PathOrFile = Union[IO[str], Path, str]
 
 FileFormat = Literal['yaml', 'json', 'auto']
 
 ArtistConfig = Union[
     Literal['default', 'dssp'], # Predefined artist configurations
-    FileOrPath                  # Configuration file
+    PathOrFile                  # Configuration file
 ]
