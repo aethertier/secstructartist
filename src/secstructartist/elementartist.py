@@ -2,12 +2,12 @@ from __future__ import annotations
 from typing import List, Iterable, Tuple, TYPE_CHECKING
 from matplotlib.lines import Line2D
 from matplotlib.patches import Patch
-from ..primitives.base import PrimitiveArtist
+from .primitives import PrimitiveArtist
 
 if TYPE_CHECKING:
     from matplotlib.axes import Axes
     from .drawstyle import DrawStyle
-    from ..primitives.base import DrawnObj
+    from .primitives.base import DrawnObj
     
 
 class ElementArtist:

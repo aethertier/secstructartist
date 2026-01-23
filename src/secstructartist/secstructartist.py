@@ -1,13 +1,15 @@
 from __future__ import annotations
 from pathlib import Path
-from typing import Dict, Iterable, List, IO, Optional, Set, Tuple, Union
+from typing import Dict, Iterable, List, Literal, IO, Optional, Set, Tuple, Union, TYPE_CHECKING
 from matplotlib.axes import Axes
 from matplotlib.pyplot import subplots
 from matplotlib.legend_handler import HandlerTuple
-
 from .drawstyle import DrawStyle
-from .elementartist import ElementArtist
 from .utils import aggregate
+
+if TYPE_CHECKING:
+    from .elementartist import ElementArtist
+
 
 
 class SecStructArtist():

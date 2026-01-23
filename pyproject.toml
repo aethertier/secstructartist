@@ -12,6 +12,7 @@ authors = [
 ]
 requires-python = ">= 3.8"
 dependencies = [
+    "pyyaml",
     "numpy",
     "matplotlib",
 ]

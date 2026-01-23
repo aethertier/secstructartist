@@ -5,7 +5,7 @@ from .base import PrimitiveArtist
 
 if TYPE_CHECKING:
     from matplotlib.axes import Axes
-    from ..core.drawstyle import DrawStyle
+    from ..drawstyle import DrawStyle
 
 
 class LinePrimitive(PrimitiveArtist):
