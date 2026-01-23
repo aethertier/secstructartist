@@ -1,13 +1,11 @@
 from __future__ import annotations
-from typing import List, Iterable, Tuple, TYPE_CHECKING
-from matplotlib.lines import Line2D
-from matplotlib.patches import Patch
-from .primitives import PrimitiveArtist
+from typing import TYPE_CHECKING, Iterable, List, Tuple
 
 if TYPE_CHECKING:
     from matplotlib.axes import Axes
     from .drawstyle import DrawStyle
-    from .primitives.base import DrawnObj
+    from .primitives import PrimitiveArtist
+    from .typing_ import DrawnArtist
     
 
 class ElementArtist:
@@ -39,7 +37,7 @@ class ElementArtist:
         length: int, 
         ax: Axes, 
         drawstyle: DrawStyle
-    ) -> List[DrawnObj]:
+    ) -> List[DrawnArtist]:
         """
         Draw a secondary structure element.
 
@@ -74,7 +72,7 @@ class ElementArtist:
             drawn.append(d)            
         return drawn
 
-    def get_legend_handle_label(self, drawstyle) -> Tuple[Tuple[DrawnObj, ...], str]:
+    def get_legend_handle_label(self, drawstyle) -> Tuple[Tuple[DrawnArtist, ...], str]:
         handle = tuple(
             p.get_legend_handle(drawstyle) for p in self.primitives
         )

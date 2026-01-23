@@ -1,14 +1,11 @@
 from __future__ import annotations
 import abc
-from typing import Any, Dict, Optional, Tuple, TYPE_CHECKING, Union
+from typing import TYPE_CHECKING, Any, Dict, Optional, Tuple
+from ..typing_ import ColorType, DrawnArtist
 
 if TYPE_CHECKING:
     from matplotlib.axes import Axes
-    from matplotlib.lines import Line2D
-    from matplotlib.patches import Patch
-    from ..core.drawstyle import DrawStyle
-    ColorType = Any
-    DrawnObj = Union[Line2D,Patch]
+    from ..drawstyle import DrawStyle
 
 
 class PrimitiveArtist(abc.ABC):
@@ -61,7 +58,7 @@ class PrimitiveArtist(abc.ABC):
         self.fillcolor = fillcolor
     
     @abc.abstractmethod
-    def draw(self, x: float, y: float, length: int, ax: Axes, drawstyle: DrawStyle) -> DrawnObj:
+    def draw(self, x: float, y: float, length: int, ax: Axes, drawstyle: DrawStyle) -> DrawnArtist:
         """
         Draw the primitive.
 
@@ -90,7 +87,7 @@ class PrimitiveArtist(abc.ABC):
         pass
         
     @abc.abstractmethod
-    def get_legend_handle(self, drawstyle: DrawStyle) -> DrawnObj:
+    def get_legend_handle(self, drawstyle: DrawStyle) -> DrawnArtist:
         """
         Create a legend handle for the primitive.
 

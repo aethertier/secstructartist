@@ -1,15 +1,14 @@
 from __future__ import annotations
-from pathlib import Path
-from typing import Dict, Iterable, List, Literal, IO, Optional, Set, Tuple, Union, TYPE_CHECKING
-from matplotlib.axes import Axes
+from typing import Dict, Iterable, List, Optional, Set, TYPE_CHECKING
 from matplotlib.pyplot import subplots
 from matplotlib.legend_handler import HandlerTuple
 from .drawstyle import DrawStyle
 from .utils import aggregate
 
 if TYPE_CHECKING:
+    from matplotlib.axes import Axes
     from .elementartist import ElementArtist
-
+    from .typing_ import DrawnArtist, LegendHandlesLabels, FileOrPath, FileFormat
 
 
 class SecStructArtist():
@@ -23,7 +22,7 @@ class SecStructArtist():
     """
     def __init__(
         self,
-        elements: Optional[Dict[str,ElementArtist]] = None,
+        elements: Optional[Dict[str, ElementArtist]] = None,
         **drawstyle_kwargs
     ):
         """
@@ -41,7 +40,7 @@ class SecStructArtist():
         self._drawn_elements: Set = set()
     
     @property
-    def elements(self) -> Dict[str,ElementArtist]:
+    def elements(self) -> Dict[str, ElementArtist]:
         """dict of str to ElementArtist"""
         return self._elements
 
@@ -61,10 +60,12 @@ class SecStructArtist():
     def draw(
         self, 
         secstruct: Iterable[str] | str, 
-        x: float = 1., y: float = 1., *, 
+        x: float = 1., 
+        y: float = 1., 
+        *, 
         ax: Optional[Axes] = None,
         **drawstyle_kwargs
-    ):
+    ) -> List[DrawnArtist]:
         """
         Draw a secondary structure schematic.
 
@@ -152,7 +153,7 @@ class SecStructArtist():
         legend.set_zorder(self.drawstyle.zorder + 1)
         return legend
     
-    def get_legend_handles_labels(self, only_drawn_elements: bool=True) -> Tuple[List, List]:
+    def get_legend_handles_labels(self, only_drawn_elements: bool=True) -> LegendHandlesLabels:
         """
         Return legend handles and labels.
 
@@ -182,9 +183,19 @@ class SecStructArtist():
         """Reset the set of elements marked as drawn."""
         self._drawn_elements = set()
 
-    def to_config(self, configfile: Optional[Union[Path, str]] = None):
+    def to_config(
+        self, 
+        configfile: Optional[FileOrPath], 
+        *,
+        format: FileFormat = 'yaml'
+    ):
         pass # TODO
 
     @classmethod
-    def from_config(cls, configfile: Union[str, Path, IO[str]], format: Literal['json']) -> SecStructArtist:
+    def from_config(
+        cls, 
+        configfile: FileOrPath, 
+        *,
+        format: FileFormat = 'auto'
+    ) -> SecStructArtist:
         pass # TODO
