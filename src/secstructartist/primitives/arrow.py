@@ -83,6 +83,7 @@ class ArrowPrimitive(PrimitiveArtist):
             zorder = drawstyle.zorder + self.zorder_offset
         )
         ax.add_patch(sheet)
+        ax.update_datalim(sheet.get_xy())
         return sheet
 
     def get_legend_handle(self, drawstyle: DrawStyle) -> Polygon:

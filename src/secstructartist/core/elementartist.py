@@ -8,14 +8,6 @@ if TYPE_CHECKING:
     from matplotlib.axes import Axes
     from .drawstyle import DrawStyle
     from ..primitives.base import DrawnObj
-
-        
-        
-        
-        # ax.update_datalim(line.get_xydata())
-        # ax.autoscale_view()
-        # ax.update_datalim(sheet.xy)
-        # ax.autoscale_view()
     
 
 class ElementArtist:

@@ -1,5 +1,6 @@
+from __future__ import annotations
 from pathlib import Path
-from typing import Dict, Iterable, List, Optional, Set, Tuple, Union
+from typing import Dict, Iterable, List, IO, Optional, Set, Tuple, Union
 from matplotlib.axes import Axes
 from matplotlib.pyplot import subplots
 from matplotlib.legend_handler import HandlerTuple
@@ -20,27 +21,27 @@ class SecStructArtist():
     """
     def __init__(
         self,
-        artists: Optional[Dict[str,ElementArtist]] = None,
+        elements: Optional[Dict[str,ElementArtist]] = None,
         **drawstyle_kwargs
     ):
         """
         Parameters
         ----------
-        artists : dict of str to ElementArtist, optional
+        elements : dict of str to ElementArtist, optional
             Mapping from secondary structure symbols to element artists.
 
         **drawstyle_kwargs
             Keyword arguments forwarded to :class:`DrawStyle` to initialize
             the drawing style.
         """
-        self._artists = dict(artists)
+        self._elements = dict(elements)
         self._drawstyle: DrawStyle = DrawStyle(**drawstyle_kwargs)
         self._drawn_elements: Set = set()
     
     @property
-    def artists(self) -> Dict[str,ElementArtist]:
+    def elements(self) -> Dict[str,ElementArtist]:
         """dict of str to ElementArtist"""
-        return self._artists
+        return self._elements
 
     @property
     def drawstyle(self) -> DrawStyle:
@@ -53,7 +54,7 @@ class SecStructArtist():
         return getattr(self._drawstyle, attrname)
 
     def __repr__(self) -> str:
-        return f"SecStructArtist({list(self.artists.keys())})"
+        return f"SecStructArtist({list(self.elements.keys())})"
     
     def draw(
         self, 
@@ -73,7 +74,7 @@ class SecStructArtist():
         ----------
         secstruct : str or iterable of str
             Residue-wise secondary structure symbols to be drawn. Each symbol
-            must be present in ``self.artists``.
+            must be present in ``self.elements``.
 
         x : float, default=1.0
             X-coordinate of the first residue.
@@ -109,15 +110,16 @@ class SecStructArtist():
         xpos = x
         drawn_elements = []
         for elem, elem_length in aggregate(secstruct):
-            if elem not in self.artists:
+            if elem not in self.elements:
                 raise ValueError(f"Missing element artist for: '{elem}'")
             
-            artist = self.artists[elem]
+            artist = self.elements[elem]
             drawn = artist.draw(xpos, y, length=elem_length, ax=ax, drawstyle=self.drawstyle)
             drawn_elements.extend(drawn)
 
             xpos += elem_length * self.drawstyle.step
             self._drawn_elements.add(elem)
+        ax.autoscale_view()
 
         return drawn_elements
     
@@ -166,7 +168,7 @@ class SecStructArtist():
             Corresponding legend labels.
         """
         handles, labels = [], []
-        for elem, artist in self.artists.items():
+        for elem, artist in self.elements.items():
             if only_drawn_elements and elem not in self._drawn_elements:
                 continue
             hdl, lbl = artist.get_legend_handle_label(self.drawstyle)
@@ -182,8 +184,5 @@ class SecStructArtist():
         pass # TODO
 
     @classmethod
-    def from_config(cls, configfile: Path | str):
-        # configpath = Path(configfile)
-        # if not configpath.exists():
-        #     raise FileNotFoundError(f"Cannot find configuration file: '{configpath}'")
+    def from_config(cls, configfile: Union[str, Path, IO[str]], format: Literal['json']) -> SecStructArtist:
         pass # TODO

@@ -25,6 +25,7 @@ class LinePrimitive(PrimitiveArtist):
             zorder=drawstyle.zorder - .1 + self.zorder_offset
         )
         ax.add_line(line)
+        ax.update_datalim(line.get_xydata())
         return line
 
     def get_legend_handle(self, drawstyle: DrawStyle) -> Line2D:

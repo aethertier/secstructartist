@@ -1,8 +1,9 @@
 from __future__ import annotations
-from dataclasses import dataclass, replace
+from typing import Dict
+from dataclasses import dataclass, asdict, replace
 
 
-@dataclass(frozen=True, slots=True)
+@dataclass(frozen=True)
 class DrawStyle:
     """Global settings for a secondary structure drawing"""
     height: float = 1.
@@ -12,3 +13,6 @@ class DrawStyle:
 
     def with_updates(self, **changes) -> DrawStyle:
         return replace(self, **changes)
+    
+    def to_dict(self) -> Dict[str, float]:
+        return asdict(self)
