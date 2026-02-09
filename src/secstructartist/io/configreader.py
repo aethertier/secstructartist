@@ -1,9 +1,9 @@
 from typing import Any, Dict
+from .utils_ import load_configuration
 from ..elementartist import ElementArtist
 from ..secstructartist import SecStructArtist
 from ..primitives import PrimitiveArtist, PRIMITIVES_AVAIL
 from ..typing_ import ArtistConfig, FileFormat
-from ..utils import load_configuration
 
 
 class SSAConfigReader:

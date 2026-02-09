@@ -1,10 +1,7 @@
 from __future__ import annotations
-import json
-import yaml
 from hashlib import blake2s
-from pathlib import Path
-from typing import Any, Dict, IO, Optional, Union, TYPE_CHECKING
-from ..utils import write_configuration
+from typing import Any, Dict, Optional, TYPE_CHECKING
+from .utils_ import write_configuration
 
 if TYPE_CHECKING:
     from ..secstructartist import SecStructArtist
