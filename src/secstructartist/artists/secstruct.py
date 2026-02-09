@@ -1,14 +1,28 @@
 from __future__ import annotations
-from typing import Dict, Iterable, List, Optional, Set, TYPE_CHECKING
+from typing import Dict, Generator, Iterable, List, Optional, Set, Tuple, TYPE_CHECKING
 from matplotlib.pyplot import subplots
 from matplotlib.legend_handler import HandlerTuple
 from .drawstyle import DrawStyle
-from .utils import aggregate
 
 if TYPE_CHECKING:
     from matplotlib.axes import Axes
-    from .elementartist import ElementArtist
-    from .typing_ import DrawnArtist, LegendHandlesLabels, FileOrPath, FileFormat
+    from .element import ElementArtist
+    from ..typing_ import DrawnArtist, LegendHandlesLabels, PathOrFile, FileFormat
+
+def _aggregate(x: Iterable[str], /) -> Generator[Tuple[str, int], None, None]:
+    """Aggregate consecutive identical elements and count their occurrences."""
+    xiter = iter(x)
+    try:
+        xval, xcnt = next(xiter), 1
+    except StopIteration:
+        return
+    for xi in xiter:
+        if xi == xval:
+            xcnt += 1
+        else:
+            yield xval, xcnt
+            xval, xcnt = xi, 1
+    yield xval, xcnt
 
 
 class SecStructArtist():
@@ -112,7 +126,7 @@ class SecStructArtist():
 
         xpos = x
         drawn_elements = []
-        for elem, elem_length in aggregate(secstruct):
+        for elem, elem_length in _aggregate(secstruct):
             if elem not in self.elements:
                 raise ValueError(f"Missing element artist for: '{elem}'")
             
@@ -185,7 +199,7 @@ class SecStructArtist():
 
     def to_config(
         self, 
-        configfile: Optional[FileOrPath], 
+        configfile: Optional[PathOrFile], 
         *,
         format: FileFormat = 'yaml'
     ):
@@ -194,11 +208,11 @@ class SecStructArtist():
     @classmethod
     def from_config(
         cls, 
-        configfile: FileOrPath, 
+        configfile: PathOrFile, 
         *,
         format: FileFormat = 'auto'
     ) -> SecStructArtist:
         """Initializes a SecStructArtist based on a config file"""
-        from .io import SSAConfigReader
+        from ..io import SSAConfigReader
         reader = SSAConfigReader()
         reader.load(configfile, format=format)

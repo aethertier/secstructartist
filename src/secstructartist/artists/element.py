@@ -5,7 +5,7 @@ if TYPE_CHECKING:
     from matplotlib.axes import Axes
     from .drawstyle import DrawStyle
     from .primitives import PrimitiveArtist
-    from .typing_ import DrawnArtist
+    from ..typing_ import DrawnArtist
     
 
 class ElementArtist:

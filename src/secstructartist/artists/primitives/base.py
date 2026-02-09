@@ -1,7 +1,7 @@
 from __future__ import annotations
 import abc
 from typing import TYPE_CHECKING, Any, Dict, Optional, Tuple
-from ..typing_ import ColorType, DrawnArtist
+from ...typing_ import ColorType, DrawnArtist
 
 if TYPE_CHECKING:
     from matplotlib.axes import Axes

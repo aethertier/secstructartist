@@ -1,12 +1,11 @@
 from __future__ import annotations
 from hashlib import blake2s
 from typing import Any, Dict, Optional, TYPE_CHECKING
-from .utils_ import write_configuration
+from ._helpers import write_configuration
 
 if TYPE_CHECKING:
-    from ..secstructartist import SecStructArtist
-    from ..elementartist import ElementArtist
-    from ..primitives import PrimitiveArtist
+    from ..artists import SecStructArtist, ElementArtist
+    from ..artists.primitives import PrimitiveArtist
     from ..typing_ import PathOrFile, FileFormat
 
 
