@@ -1,5 +1,6 @@
 from __future__ import annotations
 from hashlib import blake2s
+import json
 from typing import Any, Dict, Optional, TYPE_CHECKING
 from ._helpers import write_configuration
 
@@ -64,20 +65,27 @@ class SSAConfigWriter:
 
     def _register_primitiveartist_key(self, primitive: PrimitiveArtist) -> str:
         """Registers and returns a unique identifier for a PrimitiveArtist"""
-        prim_id = id(primitive)
-        if prim_id in self._primitives_ids:
-            return self._primitives_ids[prim_id]
-        prim_type = type(primitive).__name__
-        hashed_id = blake2s(prim_id.to_bytes(8, 'big'), digest_size=3)
-        x = int.from_bytes(hashed_id.digest(), 'big')
-        # Avoid id clashes, but limit iterations to prevent infinite loops (extremely unlikely!)
+        # Check if the object has been registered before
+        obj_id = id(primitive)
+        if obj_id in self._primitives_ids:
+            return self._primitives_ids[obj_id]
+        
+        # Get information to generate stable key for primitive
+        d = primitive.to_dict()
+        prim_type = d.pop('type')
+        b = json.dumps(d).encode('utf-8')
+        prim_hashed = blake2s(b, digest_size=3)
+        prim_id = int.from_bytes(prim_hashed.digest(), 'big')
+
+        # Avoid key clashes, limit iterations to prevent infinite loops (extremely unlikely!)
         for _ in range(100):
-            prim_key = f'{prim_type}-{x:06x}'
+            prim_key = f'{prim_type}-{prim_id:06x}'
             if prim_key not in self._primitives:
                 break
-            x += 1
-            x %= 0x1000000
+            prim_id = (prim_id + 1) % 0x1000000
         else:
             raise RuntimeError(f'Unable to generate key for primitve: {primitive!r}')
-        self._primitives_ids[prim_id] = prim_key
+        
+        # Register new object with key
+        self._primitives_ids[obj_id] = prim_key
         return prim_key
