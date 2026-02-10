@@ -34,7 +34,7 @@ class HelixPrimitive(PrimitiveArtist):
         ----------
 
         ribbon_width: float or None
-            The width of the ribbon representing the helix in units of ``DrawStyle.step``.
+            The width of the ribbon representing the helix in units of ``DrawStyle.stride``.
             If ``None``, it is set to ``0.3 * ribbon_period``
 
         ribbon_period: 
@@ -58,20 +58,10 @@ class HelixPrimitive(PrimitiveArtist):
         self.ribbon_period = ribbon_period
         self.fill_inner_ribbon = fill_inner_ribbon
 
-    @property
-    def ribbon_width(self) -> float:
-        if self._ribbon_width is None:
-            return .6 * self.ribbon_period
-        return self._ribbon_width
-    
-    @ribbon_width.setter
-    def ribbon_width(self, value: float):
-        self._ribbon_width = value
-
     def draw(self, x: float, y: float, length: int, ax: Axes, drawstyle: DrawStyle) -> PathPatch:
         # Num of halfturns
         num_halfturns = int(max(1, round(2 * length / self.ribbon_period)))
-        dx = drawstyle.step * length / num_halfturns 
+        dx = drawstyle.stride * length / num_halfturns 
         dy = drawstyle.height * self.height_scalar * .5
         
         # Generate paths for consecutive turns
@@ -100,15 +90,18 @@ class HelixPrimitive(PrimitiveArtist):
         for verts in vertices:
             k = len(verts) - 1
             if k < 2:
-                raise ValueError('Each segment needs at least 3 points.')
+                raise ValueError('Each segment needs at least 3 points')
             codes.extend([Path.MOVETO, *((Path.LINETO,) * k)])
         return codes
 
     def _pathgen_downturn(
         self, x: float, y: float, dx: float, dy: float, last: bool=False
     ) -> Vertices:
+        width = self.ribbon_width
+        if self.ribbon_width is None:
+            width = dx
         if last:
-            xll, xlr = x - .5 * self.ribbon_width, x + .5 * self.ribbon_width
+            xll, xlr = x - .5 * width, x + .5 * width
             xr = x + .5 * dx
             yl = y + dy
             return [
@@ -118,7 +111,7 @@ class HelixPrimitive(PrimitiveArtist):
                 [xlr, yl],
             ]
         else:
-            xll, xlr = x - .5 * self.ribbon_width, x + .5 * self.ribbon_width
+            xll, xlr = x - .5 * width, x + .5 * width
             xrl, xrr = xll + dx, xlr + dx
             yl, yr = y + dy, y - dy
             return [

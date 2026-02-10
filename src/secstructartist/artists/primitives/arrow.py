@@ -27,7 +27,7 @@ class ArrowPrimitive(PrimitiveArtist):
         Parameters
         ----------
         arrow_tip_length : float, default=3.0
-            Length of the arrow tip in units of ``drawstyle.step``.
+            Length of the arrow tip in units of ``drawstyle.stride``.
 
         height_scalar2 : float, optional
             Height of the arrow shaft relative to the element height. If None,
@@ -49,8 +49,8 @@ class ArrowPrimitive(PrimitiveArtist):
 
     def draw(self, x: float, y: float, length: int, ax: Axes, drawstyle: DrawStyle) -> Polygon:
         x0, y2 = x + self.x_offset, y + self.y_offset
-        x2 = x0 + drawstyle.step * length
-        x1 = x2 - self.arrow_tip_length * drawstyle.step
+        x2 = x0 + drawstyle.stride * length
+        x1 = x2 - self.arrow_tip_length * drawstyle.stride
         y0 = y2 - .5 * drawstyle.height * self.height_scalar
         y1 = y2 - .5 * drawstyle.height * self.height_scalar2
         y3 = y2 + .5 * drawstyle.height * self.height_scalar2

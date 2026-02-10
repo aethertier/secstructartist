@@ -7,7 +7,7 @@ from dataclasses import dataclass, asdict, replace
 class DrawStyle:
     """Global settings for a secondary structure drawing"""
     height: float = 1.
-    step: float = 1.
+    stride: float = 1.
     linewidth: float = 1.
     zorder: float = 9.
 

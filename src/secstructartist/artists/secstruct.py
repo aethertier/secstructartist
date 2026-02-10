@@ -120,8 +120,8 @@ class SecStructArtist():
                 y + .7 * self.drawstyle.height
             ])
             ax.set_xlim([
-                x - .5 * self.drawstyle.step, 
-                x + (len(secstruct) + .5) * self.drawstyle.step, 
+                x - .5 * self.drawstyle.stride, 
+                x + (len(secstruct) + .5) * self.drawstyle.stride, 
             ])
 
         xpos = x
@@ -134,7 +134,7 @@ class SecStructArtist():
             drawn = artist.draw(xpos, y, length=elem_length, ax=ax, drawstyle=self.drawstyle)
             drawn_elements.extend(drawn)
 
-            xpos += elem_length * self.drawstyle.step
+            xpos += elem_length * self.drawstyle.stride
             self._drawn_elements.add(elem)
         ax.autoscale_view()
 

@@ -17,7 +17,7 @@ class LinePrimitive(PrimitiveArtist):
     """
     def draw(self, x: float, y: float, length: int, ax: Axes, drawstyle: DrawStyle) -> Line2D:
         x0, y0 = x + self.x_offset, y + self.y_offset
-        x1 = x0 + drawstyle.step * length
+        x1 = x0 + drawstyle.stride * length
         line = Line2D(
             [x0, x1], [y0, y0], 
             linewidth=drawstyle.linewidth * self.linewidth_scalar,
