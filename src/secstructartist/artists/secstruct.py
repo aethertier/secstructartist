@@ -1,13 +1,14 @@
 from __future__ import annotations
-from typing import Dict, Generator, Iterable, List, Optional, Set, Tuple, TYPE_CHECKING
-from matplotlib.pyplot import subplots
+from typing import (
+    Dict, Generator, Iterable, List, Literal, Optional, Set, Tuple, TYPE_CHECKING
+)
 from matplotlib.legend_handler import HandlerTuple
 from .drawstyle import DrawStyle
 
 if TYPE_CHECKING:
     from matplotlib.axes import Axes
     from .element import ElementArtist
-    from ..typing_ import DrawnArtist, LegendHandlesLabels, PathOrFile, FileFormat
+    from ..typing_ import ArtistConfig, DrawnArtist, LegendHandlesLabels, PathOrFile, FileFormat
 
 def _aggregate(x: Iterable[str], /) -> Generator[Tuple[str, int], None, None]:
     """Aggregate consecutive identical elements and count their occurrences."""
@@ -30,7 +31,7 @@ class SecStructArtist():
     Renderer for one-dimensional secondary structure schematics.
 
     This class provides a high-level interface for drawing secondary structure
-    strings (e.g. ``"HHHHEEELL"``) into a Matplotlib Axes. Each secondary
+    strings (e.g. ``"LLHHHHHLLEEE"``) into a Matplotlib Axes. Each secondary
     structure symbol is mapped to an :class:`ElementArtist` which controls
     how the corresponding element is rendered.
     """
@@ -76,8 +77,7 @@ class SecStructArtist():
         secstruct: Iterable[str] | str, 
         x: float = 1., 
         y: float = 1., 
-        *, 
-        ax: Optional[Axes] = None,
+        ax: Axes = None,
         **drawstyle_kwargs
     ) -> List[DrawnArtist]:
         """
@@ -99,12 +99,12 @@ class SecStructArtist():
         y : float, default=1.0
             Y-coordinate of the schematic baseline.
 
-        ax : matplotlib.axes.Axes, optional
-            Axes into which the schematic is drawn. If `None`, a new Axes is
-            created.
+        ax : matplotlib.axes.Axes
+            Axes into which the schematic is drawn. Mandatory when calling 
+            ``draw`` directly.
 
         **drawstyle_kwargs
-            Keyword arguments used to update the current :class:`DrawStyle`.
+            Keyword arguments that update current :class:`DrawStyle`.
 
         Returns
         -------
@@ -112,17 +112,12 @@ class SecStructArtist():
             List of Matplotlib artists created during drawing.
         """
         if drawstyle_kwargs:
-            self.drawstyle = self.drawstyle.with_updates(**drawstyle_kwargs)
-        if ax is None:
-            fig, ax = subplots(figsize=(.1*len(secstruct),.5))
-            ax.set_ylim([
-                y - .7 * self.drawstyle.height, 
-                y + .7 * self.drawstyle.height
-            ])
-            ax.set_xlim([
-                x - .5 * self.drawstyle.stride, 
-                x + (len(secstruct) + .5) * self.drawstyle.stride, 
-            ])
+            self.update_drawstyle(**drawstyle_kwargs)
+        if ax is None: 
+            raise ValueError(
+                'draw() requires a matplotlib.axes.Axes. Use draw_secondary_structure() '
+                'convenience function to create one automatically.'
+            )
 
         xpos = x
         drawn_elements = []
@@ -140,7 +135,12 @@ class SecStructArtist():
 
         return drawn_elements
     
-    def legend(self, *, ax: Axes, all_elements: bool=False, **legend_kwargs):
+    def legend(
+        self, *, 
+        ax: Axes, 
+        only_drawn: bool=True,
+        multi_handle: Literal['first', 'last', 'tuple']='first',
+        **legend_kwargs):
         """
         Add a legend for the rendered secondary structure elements.
 
@@ -161,19 +161,30 @@ class SecStructArtist():
         matplotlib.legend.Legend
             The created legend instance.
         """
-        handles, labels = self.get_legend_handles_labels()
-        print(handles, labels)
-        legend = ax.legend(handles, labels, handler_map={tuple: HandlerTuple(ndivide=None)}, **legend_kwargs)
+        handles, labels = self.get_legend_handles_labels(
+            only_drawn = only_drawn,
+            multi_handle = multi_handle
+        )
+        legend = ax.legend(
+            handles, labels, 
+            handler_map={tuple: HandlerTuple(ndivide=None)}, 
+            **legend_kwargs
+        )
         legend.set_zorder(self.drawstyle.zorder + 1)
         return legend
     
-    def get_legend_handles_labels(self, only_drawn_elements: bool=True) -> LegendHandlesLabels:
+    def get_legend_handles_labels(
+        self, 
+        *, 
+        only_drawn: bool=True,
+        multi_handle: Literal['first', 'last', 'tuple']='first'
+    ) -> LegendHandlesLabels:
         """
         Return legend handles and labels.
 
         Parameters
         ----------
-        only_drawn_elements : bool, default=True
+        only_drawn : bool, default=True
             If True, return handles only for elements that have been drawn.
 
         Returns
@@ -186,9 +197,9 @@ class SecStructArtist():
         """
         handles, labels = [], []
         for elem, artist in self.elements.items():
-            if only_drawn_elements and elem not in self._drawn_elements:
+            if only_drawn and elem not in self._drawn_elements:
                 continue
-            hdl, lbl = artist.get_legend_handle_label(self.drawstyle)
+            hdl, lbl = artist.get_legend_handle_label(self.drawstyle, multi_handle=multi_handle)
             handles.append(hdl)
             labels.append(lbl)
         return handles, labels
@@ -197,15 +208,18 @@ class SecStructArtist():
         """Reset the set of elements marked as drawn."""
         self._drawn_elements = set()
 
-    def to_config(self, file_: Optional[PathOrFile], *, format_: FileFormat = 'auto'):
+    def update_drawstyle(self, **changes):
+        self._drawstyle = self.drawstyle.with_updates(**changes)
+
+    def to_config(self, file_: Optional[PathOrFile], format_: FileFormat = 'auto'):
         """Write the SecStructArtist configuration to a file."""
         from ..io import SSAConfigWriter
         writer = SSAConfigWriter(self)
         writer.write(file_, format_=format_)
 
     @classmethod
-    def from_config(cls, file_: PathOrFile, *, format_: FileFormat = 'auto') -> SecStructArtist:
+    def from_config(cls, config_: ArtistConfig, format_: FileFormat = 'auto') -> SecStructArtist:
         """Initializes a SecStructArtist based on a config file"""
         from ..io import SSAConfigReader
-        reader = SSAConfigReader(file_, format_=format_)
+        reader = SSAConfigReader(config_, format_=format_)
         return reader.get_secstructartist()

@@ -1,5 +1,5 @@
 from __future__ import annotations
-from typing import TYPE_CHECKING, Iterable, List, Tuple
+from typing import TYPE_CHECKING, Iterable, List, Literal, Tuple
 
 if TYPE_CHECKING:
     from matplotlib.axes import Axes
@@ -72,10 +72,11 @@ class ElementArtist:
             drawn.append(d)            
         return drawn
 
-    def get_legend_handle_label(self, drawstyle) -> Tuple[Tuple[DrawnArtist, ...], str]:
-        handle = tuple(
-            p.get_legend_handle(drawstyle) for p in self.primitives
-        )
+    def get_legend_handle_label(
+        self, 
+        drawstyle: DrawStyle, 
+        multi_handle: Literal['first', 'last', 'tuple']='first'    
+    ) -> Tuple[Tuple[DrawnArtist, ...], str]:
         """
         Return legend handle(s) and label for the element.
 
@@ -95,4 +96,19 @@ class ElementArtist:
         label : str
             Legend label for the element.
         """
-        return handle, self.label
+        if multi_handle.lower() == 'first':
+            prim = self.primitives[0]
+            handles = prim.get_legend_handle(drawstyle)
+        elif multi_handle.lower() == 'last':
+            prim = self.primitives[-1]
+            handles = prim.get_legend_handle(drawstyle)
+        elif multi_handle.lower() == 'tuple':
+            handles = tuple(
+                prim.get_legend_handle(drawstyle) for prim in self.primitives
+            )
+        else:
+            raise ValueError(
+                f"Unknown value for `mutli_handle`: {multi_handle}. Allowed "
+                "values are {'first', 'last', 'tuple'}."
+            )
+        return handles, self.label

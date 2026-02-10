@@ -85,6 +85,7 @@ class HelixPrimitive(PrimitiveArtist):
         path = Path(vertices, codes)
         patch = PathPatch(
             path, 
+            linewidth = drawstyle.linewidth * self.linewidth_scalar,
             facecolor = self.fillcolor, 
             edgecolor = self.linecolor,
             zorder = drawstyle.zorder + self.zorder_offset
