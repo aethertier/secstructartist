@@ -197,22 +197,15 @@ class SecStructArtist():
         """Reset the set of elements marked as drawn."""
         self._drawn_elements = set()
 
-    def to_config(
-        self, 
-        configfile: Optional[PathOrFile], 
-        *,
-        format: FileFormat = 'yaml'
-    ):
-        pass # TODO
+    def to_config(self, file_: Optional[PathOrFile], *, format_: FileFormat = 'auto'):
+        """Write the SecStructArtist configuration to a file."""
+        from ..io import SSAConfigWriter
+        writer = SSAConfigWriter(self)
+        writer.write(file_, format_=format_)
 
     @classmethod
-    def from_config(
-        cls, 
-        configfile: PathOrFile, 
-        *,
-        format: FileFormat = 'auto'
-    ) -> SecStructArtist:
+    def from_config(cls, file_: PathOrFile, *, format_: FileFormat = 'auto') -> SecStructArtist:
         """Initializes a SecStructArtist based on a config file"""
         from ..io import SSAConfigReader
-        reader = SSAConfigReader()
-        reader.load(configfile, format=format)
+        reader = SSAConfigReader(file_, format_=format_)
+        return reader.get_secstructartist()
