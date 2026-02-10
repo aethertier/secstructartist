@@ -1,6 +1,6 @@
 from __future__ import annotations
 from typing import Any, Dict, TYPE_CHECKING
-from matplotlib.patches import Polygon
+from matplotlib.patches import Polygon, Rectangle
 from .base import PrimitiveArtist
 
 if TYPE_CHECKING:
@@ -86,25 +86,16 @@ class ArrowPrimitive(PrimitiveArtist):
         ax.update_datalim(sheet.get_xy())
         return sheet
 
-    def get_legend_handle(self, drawstyle: DrawStyle) -> Polygon:
-        # Define a small, normalized arrow in legend coordinates
-        # Legend handles typically live in a ~1x1 box
-        xypath = [
-            (0.0, 0.3),
-            (0.6, 0.3),
-            (0.6, 0.1),
-            (1.0, 0.5),
-            (0.6, 0.9),
-            (0.6, 0.7),
-            (0.0, 0.7),
-        ]
-        sheet = Polygon(xypath, closed=True, 
+    def get_legend_handle(self, drawstyle: DrawStyle) -> Rectangle:
+        """Returns a handle for a legend, currently just a rectangle"""
+        rec = Rectangle(
+            (0.,0.), width=1., height=1.,
             linewidth = drawstyle.linewidth * self.linewidth_scalar,
             fill = (self.fillcolor is not None),
             edgecolor = self.linecolor, 
             facecolor = self.fillcolor,
         )
-        return sheet
+        return rec
     
     def to_dict(self) -> Dict[str, Any]:
         return super().to_dict('arrow_tip_length', 'height_scalar2')
