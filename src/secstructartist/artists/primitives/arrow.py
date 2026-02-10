@@ -45,7 +45,15 @@ class ArrowPrimitive(PrimitiveArtist):
         """
         super().__init__(**kwargs)
         self.arrow_tip_length = arrow_tip_length
-        self.height_scalar2 = height_scalar2 if height_scalar2 is not None else self.height_scalar * .7
+        self._height_scalar2 = height_scalar2
+        
+    @property
+    def height_scalar2(self) -> float:
+        return .7 * self.height_scalar if self._height_scalar2 is None else self._height_scalar2
+    
+    @height_scalar2.setter
+    def height_scalar2(self, _value: float):
+        self._height_scalar2 = _value
 
     def draw(self, x: float, y: float, length: int, ax: Axes, drawstyle: DrawStyle) -> Polygon:
         x0, y2 = x + self.x_offset, y + self.y_offset
@@ -98,4 +106,7 @@ class ArrowPrimitive(PrimitiveArtist):
         return rec
     
     def to_dict(self) -> Dict[str, Any]:
-        return super().to_dict('arrow_tip_length', 'height_scalar2')
+        return super().to_dict(
+            arrow_tip_length = self.arrow_tip_length, 
+            height_scalar2 = self._height_scalar2
+        )

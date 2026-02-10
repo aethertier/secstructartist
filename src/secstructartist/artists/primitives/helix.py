@@ -65,23 +65,30 @@ class HelixPrimitive(PrimitiveArtist):
         dy = drawstyle.height * self.height_scalar * .5
         
         # Generate paths for consecutive turns
-        vertices, downturn_new = [], [[x, y]]
-        x_ = x
+        x_, y_ = x + self.x_offset, y + self.y_offset
+        vertices, downturn_new = [], [[x_, y_]]
+        
         for k in range(0, num_halfturns, 2):
             is_last = (num_halfturns - k) < 2
             downturn_prv = downturn_new
-            downturn_new = self._pathgen_downturn(x_ + .5 * dx, y, dx, dy, last=is_last)
+            downturn_new = self._pathgen_downturn(x_ + .5 * dx, y_, dx, dy, last=is_last)
             upturn = self._pathgen_upturn(left=downturn_prv, right=downturn_new)
             vertices.append(upturn)
             vertices.append(downturn_new)
             x_ += 2 * dx
         if num_halfturns % 2 == 0:
-            downturn_prv, downturn_new = downturn_new, [[x_, y]]
+            downturn_prv, downturn_new = downturn_new, [[x_, y_]]
             upturn = self._pathgen_upturn(left=downturn_prv, right=downturn_new)
             vertices.append(upturn)
 
-        path = Path(np.concatenate(vertices, axis=0), self._pathgen_codes(vertices))
-        patch = PathPatch(path, facecolor=self.fillcolor, edgecolor=self.linecolor)
+        vertices, codes = np.concatenate(vertices, axis=0), self._pathgen_codes(vertices)
+        path = Path(vertices, codes)
+        patch = PathPatch(
+            path, 
+            facecolor = self.fillcolor, 
+            edgecolor = self.linecolor,
+            zorder = drawstyle.zorder + self.zorder_offset
+        )
         ax.add_patch(patch)
         ax.update_datalim(path.vertices)
 
@@ -153,7 +160,8 @@ class HelixPrimitive(PrimitiveArtist):
         return rec
     
     def to_dict(self) -> Dict[str, Any]:
-        attrnames = ['fillcolor2', 'ribbon_period', 'fill_inner_ribbon']
-        if self._ribbon_width is None:
-            attrnames.append('ribbon_width')
-        return super().to_dict(*attrnames)
+        return super().to_dict(
+            ribbon_width = self.ribbon_width,
+            ribbon_period = self.ribbon_period,
+            fill_inner_ribbon = self.fill_inner_ribbon,
+        )

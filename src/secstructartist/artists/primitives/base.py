@@ -103,7 +103,7 @@ class PrimitiveArtist(abc.ABC):
         """
         pass
 
-    def to_dict(self, *attrnames: str) -> Dict[str, Any]:
+    def to_dict(self, **additional_atributes) -> Dict[str, Any]:
         selfdict = {
             'type': type(self).__name__,
             'xy_offset': [self.x_offset, self.y_offset],
@@ -113,5 +113,5 @@ class PrimitiveArtist(abc.ABC):
             'linecolor': self.linecolor,
             'fillcolor': self.fillcolor,
         }
-        selfdict.update({a: getattr(self, a) for a in attrnames})
+        selfdict.update(additional_atributes)
         return selfdict
