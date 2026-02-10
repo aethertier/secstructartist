@@ -83,15 +83,16 @@ class HelixPrimitive(PrimitiveArtist):
 
         vertices, codes = np.concatenate(vertices, axis=0), self._pathgen_codes(vertices)
         path = Path(vertices, codes)
-        patch = PathPatch(
+        helix = PathPatch(
             path, 
             linewidth = drawstyle.linewidth * self.linewidth_scalar,
             facecolor = self.fillcolor, 
             edgecolor = self.linecolor,
             zorder = drawstyle.zorder + self.zorder_offset
         )
-        ax.add_patch(patch)
+        ax.add_patch(helix)
         ax.update_datalim(path.vertices)
+        return helix
 
     def _pathgen_codes(self, vertices: List[Vertices]) -> List[int]:
         codes = []

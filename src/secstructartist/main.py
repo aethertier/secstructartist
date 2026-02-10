@@ -1,6 +1,7 @@
 from __future__ import annotations
 from typing import Any, Iterable, Optional, Union, TYPE_CHECKING
 from matplotlib.axes import Axes
+from matplotlib.pyplot import subplots
 from .artists import SecStructArtist
 
 if TYPE_CHECKING:
@@ -55,4 +56,7 @@ def draw_secondary_structure(
     # Get the artist to be used for drawing
     if not isinstance(artist, SecStructArtist):
         artist = SecStructArtist.from_config(artist)
+    if ax is None:
+        n = len(secstruct)
+        fig, ax = subplots(figsize=(.05*n, .75), subplot_kw={'projection': 'secstruct'})
     return artist.draw(secstruct, x, y, ax=ax)
