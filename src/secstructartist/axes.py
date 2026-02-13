@@ -27,7 +27,7 @@ class SecStructAxes(Axes):
         secstruct: Iterable[str] | str,
         x: float = 1., 
         y: float = 1., *,
-        artist: Union[ArtistConfig, SecStructArtist] = 'default',
+        artist: Union[ArtistConfig, SecStructArtist] = 'pymol',
         **drawstyle_kwargs: Optional[Any]
     ) -> List[DrawnArtist]:
         """

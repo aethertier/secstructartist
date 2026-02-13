@@ -14,7 +14,7 @@ def draw_secondary_structure(
     y: float = 1., 
     *,
     ax: Optional[Axes] = None,
-    artist: Union[ArtistConfig, SecStructArtist] = 'default',
+    artist: Union[ArtistConfig, SecStructArtist] = 'pymol',
     **drawstyle_kwargs: Optional[Any]
 ):
     """
@@ -58,5 +58,5 @@ def draw_secondary_structure(
         artist = SecStructArtist.from_config(artist)
     if ax is None:
         n = len(secstruct)
-        fig, ax = subplots(figsize=(.05*n, .75), subplot_kw={'projection': 'secstruct'})
+        fig, ax = subplots(figsize=(.05*n, .5), subplot_kw={'projection': 'secstruct'})
     return artist.draw(secstruct, x, y, ax=ax)

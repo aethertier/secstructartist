@@ -34,6 +34,6 @@ PathOrFile = Union[IO[str], Path, str]
 FileFormat = Literal['yaml', 'json', 'auto']
 
 ArtistConfig = Union[
-    Literal['default', 'dssp'], # Predefined artist configurations
-    PathOrFile                  # Configuration file
+    Literal['simple', 'pymol', 'dssp'], # Predefined artist configurations
+    PathOrFile # Configuration file
 ]
