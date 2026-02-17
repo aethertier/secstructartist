@@ -23,7 +23,7 @@ class PrimitiveArtist(abc.ABC):
         xy_offset: Tuple[float, float] = None,
         height_scalar: float = 1.,
         linewidth_scalar: float = 1.,
-        zorder_offset: float = 1,
+        zorder_offset: float = 0.,
         linecolor: ColorType='k',
         fillcolor: Optional[ColorType]='w',
     ):
