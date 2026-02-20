@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 
 
 def draw_secondary_structure(
-    secstruct: Iterable[str] | str,
+    secstruct: Iterable[str],
     x: float = 1., 
     y: float = 1., 
     *,
@@ -56,7 +56,14 @@ def draw_secondary_structure(
     # Get the artist to be used for drawing
     if not isinstance(artist, SecStructArtist):
         artist = SecStructArtist.from_config(artist)
+    
     if ax is None:
         n = len(secstruct)
         fig, ax = subplots(figsize=(.05*n, .5), subplot_kw={'projection': 'secstruct'})
-    return artist.draw(secstruct, x, y, ax=ax)
+        return ax.draw_secondary_structure(
+            secstruct, x, y, artist=artist, **drawstyle_kwargs
+        )
+    
+    return artist.draw(
+        secstruct, x, y, ax=ax, **drawstyle_kwargs
+    )

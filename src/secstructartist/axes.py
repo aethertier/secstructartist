@@ -24,7 +24,7 @@ class SecStructAxes(Axes):
 
     def draw_secondary_structure(
         self,
-        secstruct: Iterable[str] | str,
+        secstruct: Iterable[str],
         x: float = 1., 
         y: float = 1., *,
         artist: Union[ArtistConfig, SecStructArtist] = 'pymol',

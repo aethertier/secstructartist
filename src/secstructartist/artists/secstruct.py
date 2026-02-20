@@ -74,7 +74,7 @@ class SecStructArtist():
     
     def draw(
         self, 
-        secstruct: Iterable[str] | str, 
+        secstruct: Iterable[str], 
         x: float = 1., 
         y: float = 1., 
         ax: Axes = None,
