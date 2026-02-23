@@ -5,7 +5,7 @@ from matplotlib.pyplot import subplots
 from .artists import SecStructArtist
 
 if TYPE_CHECKING:
-    from .typing_ import ArtistConfig
+    from .typing_ import ArtistKW, PathOrFile
 
 
 def draw_secondary_structure(
@@ -14,7 +14,7 @@ def draw_secondary_structure(
     y: float = 1., 
     *,
     ax: Optional[Axes] = None,
-    artist: Union[ArtistConfig, SecStructArtist] = 'pymol',
+    artist: Union[ArtistKW, PathOrFile, SecStructArtist] = 'default',
     **drawstyle_kwargs: Optional[Any]
 ):
     """

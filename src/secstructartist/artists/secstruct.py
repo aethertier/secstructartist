@@ -1,6 +1,6 @@
 from __future__ import annotations
 from typing import (
-    Dict, Generator, Iterable, List, Literal, Optional, Set, Tuple, TYPE_CHECKING
+    Dict, Generator, Iterable, List, Literal, Optional, Set, Tuple, Union, TYPE_CHECKING
 )
 from matplotlib.legend_handler import HandlerTuple
 from .drawstyle import DrawStyle
@@ -8,7 +8,7 @@ from .drawstyle import DrawStyle
 if TYPE_CHECKING:
     from matplotlib.axes import Axes
     from .element import ElementArtist
-    from ..typing_ import ArtistConfig, DrawnArtist, LegendHandlesLabels, PathOrFile, FileFormat
+    from ..typing_ import ArtistKW, PathOrFile, FileFormat, DrawnArtist, LegendHandlesLabels
 
 def _aggregate(x: Iterable[str], /) -> Generator[Tuple[str, int], None, None]:
     """Aggregate consecutive identical elements and count their occurrences."""
@@ -217,7 +217,7 @@ class SecStructArtist():
         writer.write(file_, format_=format_)
 
     @classmethod
-    def from_config(cls, config_: ArtistConfig, format_: FileFormat = 'auto') -> SecStructArtist:
+    def from_config(cls, config_: Union[ArtistKW, PathOrFile], format_: FileFormat = 'auto') -> SecStructArtist:
         """Initializes a SecStructArtist based on a config file"""
         from ..io import SSAConfigReader
         reader = SSAConfigReader(config_, format_=format_)

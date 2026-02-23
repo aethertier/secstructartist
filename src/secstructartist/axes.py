@@ -6,7 +6,7 @@ from .artists import SecStructArtist
 
 if TYPE_CHECKING:
     from matplotlib.legend import Legend
-    from .typing_ import ArtistConfig, DrawnArtist
+    from .typing_ import ArtistKW, PathOrFile, DrawnArtist
 
 class SecStructAxes(Axes):
     """
@@ -27,7 +27,7 @@ class SecStructAxes(Axes):
         secstruct: Iterable[str],
         x: float = 1., 
         y: float = 1., *,
-        artist: Union[ArtistConfig, SecStructArtist] = 'pymol',
+        artist: Union[ArtistKW, PathOrFile, SecStructArtist] = 'default',
         **drawstyle_kwargs: Optional[Any]
     ) -> List[DrawnArtist]:
         """

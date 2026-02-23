@@ -1,13 +1,13 @@
-from typing import Any, Dict
+from typing import Any, Dict, Union
 from ._helpers import load_configuration
 from ..artists import SecStructArtist, ElementArtist
 from ..artists.primitives import PrimitiveArtist, PRIMITIVES_AVAIL
-from ..typing_ import ArtistConfig, FileFormat
+from ..typing_ import ArtistKW, PathOrFile, FileFormat
 
 
 class SSAConfigReader:
 
-    def __init__(self, config_: ArtistConfig, format_: FileFormat='auto'):
+    def __init__(self, config_: Union[ArtistKW, PathOrFile], format_: FileFormat='auto'):
         self._config : Dict[str, Dict[str, Any]] = None
         self._secstructartist : SecStructArtist = None
         self._elements : Dict[str, ElementArtist] = None
@@ -63,6 +63,6 @@ class SSAConfigReader:
             self._drawstyle = dict(self.config['drawstyle'])
         return self._drawstyle
 
-    def _load_configuration(self, config_: ArtistConfig, format_: FileFormat='auto'):
+    def _load_configuration(self, config_: Union[ArtistKW, PathOrFile], format_: FileFormat='auto'):
         """Loads a configuration file"""
         self._config = load_configuration(config_, format_)

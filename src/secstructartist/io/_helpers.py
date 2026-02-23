@@ -2,8 +2,9 @@ import os, io
 import json
 import yaml
 from pathlib import Path
+from typing import Union
 from ..constants import SSA_CONFIGURATIONS
-from ..typing_ import ArtistConfig, PathOrFile, FileFormat
+from ..typing_ import ArtistKW, PathOrFile, FileFormat
 
 def infer_file_format(fname: str, fmt: FileFormat='auto'):
     """
@@ -35,7 +36,7 @@ def infer_file_format(fname: str, fmt: FileFormat='auto'):
     
     raise ValueError(f"Unknown configuration file format: '{fmt}'")
 
-def load_configuration(config_: ArtistConfig, format_: FileFormat='auto'):
+def load_configuration(config_: Union[ArtistKW, PathOrFile], format_: FileFormat='auto'):
     """
     Load a configuration from a path, file-like object, or named preset.
 
