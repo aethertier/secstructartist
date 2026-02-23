@@ -12,9 +12,10 @@ authors = [
 ]
 requires-python = ">= 3.8"
 dependencies = [
-    "pyyaml",
-    "numpy",
     "matplotlib",
+    "numpy",
+    "pytest",
+    "pyyaml"
 ]
 classifiers=[
     "Natural Language :: English",
@@ -36,12 +37,13 @@ keywords = ['secondary structure', 'protein', 'biology']
 [project.urls]
 Repository = "https://github.com/aethertier/secstructartist"
 
-[tool.setuptools]
-packages = ["secstructartist"]
-
 [tool.setuptools.dynamic]
 version = {attr = "secstructartist.constants.SSA_VERSION"}
 readme = {file = "README.md", content-type = "text/markdown"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["secstructartist"]
 
 [tool.setuptools.package-data]
 secstructartist = ["*.yaml"]

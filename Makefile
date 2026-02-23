@@ -13,8 +13,12 @@ install:
 uninstall:
 	pip uninstall -y $(PACKAGE_NAME)
 
+test:
+	pip install --upgrade pip pytest
+	python -m pytest ./tests
+
 publish:
 	twine upload dist/*
 
 clean:
-	rm -rf dist $(PACKAGE_NAME).egg-info
+	rm -rf dist src/$(PACKAGE_NAME).egg-info
