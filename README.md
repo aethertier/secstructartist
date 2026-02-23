@@ -3,7 +3,7 @@
 This package allows to include pretty secondary structure schemes in 
 matplotlib plots.
 
-![example01.png](https://github.com/bickeld/secstructartist/blob/main/examples/example_rmsf.png?raw=true)
+![example01.png](https://github.com/bickeld/secstructartist/blob/main/examples/example01.png)
 
 ## Table of content
 

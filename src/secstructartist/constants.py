@@ -1,6 +1,6 @@
 from pathlib import Path
 
-SSA_VERSION = '2.0.0'
+SSA_VERSION = '2.0.1'
 
 SSA_ROOT = Path(__file__).parent
 
