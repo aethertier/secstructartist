@@ -1,0 +1,261 @@
+drawstyle:
+  height: 1.0
+  linewidth: 0.5
+  stride: 1.0
+  zorder: 5
+elements:
+  ' ':
+    label: Loop
+    primitives:
+    - LinePrimitive-41d844
+  '-':
+    label: Loop
+    primitives:
+    - LinePrimitive-41d844
+  B:
+    label: $\beta$-Bridge
+    primitives:
+    - ArrowPrimitive-bb39da
+  C:
+    label: Loop
+    primitives:
+    - LinePrimitive-41d844
+  E:
+    label: Extended $\beta$-Strand
+    primitives:
+    - ArrowPrimitive-646ff2
+  G:
+    label: $3_{10}$-Helix
+    primitives:
+    - HelixPrimitive-88320c
+    - HelixPrimitive-5251cc
+  H:
+    label: $\alpha$-Helix
+    primitives:
+    - HelixPrimitive-6c54b1
+    - HelixPrimitive-2b5fad
+  I:
+    label: $\pi$-Helix
+    primitives:
+    - HelixPrimitive-453e54
+    - HelixPrimitive-b50d3c
+  L:
+    label: Loop
+    primitives:
+    - LinePrimitive-41d844
+  P:
+    label: $\kappa$-Helix
+    primitives:
+    - HelixPrimitive-079e6d
+    - HelixPrimitive-9e6e51
+  S:
+    label: Bend
+    primitives:
+    - LinePrimitive-f0e387
+  T:
+    label: H-bonded turn
+    primitives:
+    - LinePrimitive-49b67b
+  b:
+    label: $\beta$-Bridge
+    primitives:
+    - ArrowPrimitive-bb39da
+  c:
+    label: Loop
+    primitives:
+    - LinePrimitive-41d844
+  e:
+    label: Extended $\beta$-Strand
+    primitives:
+    - ArrowPrimitive-646ff2
+  g:
+    label: $3_{10}$-Helix
+    primitives:
+    - HelixPrimitive-88320c
+    - HelixPrimitive-5251cc
+  h:
+    label: $\alpha$-Helix
+    primitives:
+    - HelixPrimitive-6c54b1
+    - HelixPrimitive-2b5fad
+  i:
+    label: $\pi$-Helix
+    primitives:
+    - HelixPrimitive-453e54
+    - HelixPrimitive-b50d3c
+  l:
+    label: Loop
+    primitives:
+    - LinePrimitive-41d844
+  p:
+    label: $\kappa$-Helix
+    primitives:
+    - HelixPrimitive-079e6d
+    - HelixPrimitive-9e6e51
+  s:
+    label: Bend
+    primitives:
+    - LinePrimitive-f0e387
+  t:
+    label: H-bonded turn
+    primitives:
+    - LinePrimitive-49b67b
+primitives:
+  ArrowPrimitive-646ff2:
+    arrow_tip_length: 3
+    fillcolor: '#4c82c7'
+    height_scalar: 0.65
+    height_scalar2: 0.4
+    linecolor: '#191921'
+    linewidth_scalar: 1.0
+    type: ArrowPrimitive
+    xy_offset:
+    - 0
+    - 0
+    zorder_offset: 0.0
+  ArrowPrimitive-bb39da:
+    arrow_tip_length: 3
+    fillcolor: '#74bbf9'
+    height_scalar: 0.65
+    height_scalar2: 0.4
+    linecolor: '#191921'
+    linewidth_scalar: 1.0
+    type: ArrowPrimitive
+    xy_offset:
+    - 0
+    - 0
+    zorder_offset: 0.0
+  HelixPrimitive-079e6d:
+    fill_inner_ribbon: false
+    fillcolor: '#fdb71f'
+    height_scalar: 0.5
+    linecolor: '#191921'
+    linewidth_scalar: 1.0
+    ribbon_period: 3.0
+    ribbon_width: null
+    type: HelixPrimitive
+    xy_offset:
+    - 0
+    - 0
+    zorder_offset: 0.0
+  HelixPrimitive-2b5fad:
+    fill_inner_ribbon: true
+    fillcolor: '#eebbbb'
+    height_scalar: 0.9
+    linecolor: '#191921'
+    linewidth_scalar: 1.0
+    ribbon_period: 3.6
+    ribbon_width: null
+    type: HelixPrimitive
+    xy_offset:
+    - 0
+    - 0
+    zorder_offset: -0.5
+  HelixPrimitive-453e54:
+    fill_inner_ribbon: false
+    fillcolor: '#9343b3'
+    height_scalar: 0.7
+    linecolor: '#191921'
+    linewidth_scalar: 1.0
+    ribbon_period: 3.0
+    ribbon_width: null
+    type: HelixPrimitive
+    xy_offset:
+    - 0
+    - 0
+    zorder_offset: 0.0
+  HelixPrimitive-5251cc:
+    fill_inner_ribbon: true
+    fillcolor: '#edb7d6'
+    height_scalar: 0.7
+    linecolor: '#191921'
+    linewidth_scalar: 1.0
+    ribbon_period: 3.0
+    ribbon_width: null
+    type: HelixPrimitive
+    xy_offset:
+    - 0
+    - 0
+    zorder_offset: -0.5
+  HelixPrimitive-6c54b1:
+    fill_inner_ribbon: false
+    fillcolor: '#d94740'
+    height_scalar: 0.9
+    linecolor: '#191921'
+    linewidth_scalar: 1.0
+    ribbon_period: 3.6
+    ribbon_width: null
+    type: HelixPrimitive
+    xy_offset:
+    - 0
+    - 0
+    zorder_offset: 0.0
+  HelixPrimitive-88320c:
+    fill_inner_ribbon: false
+    fillcolor: '#e33e9e'
+    height_scalar: 0.7
+    linecolor: '#191921'
+    linewidth_scalar: 1.0
+    ribbon_period: 3.0
+    ribbon_width: null
+    type: HelixPrimitive
+    xy_offset:
+    - 0
+    - 0
+    zorder_offset: 0.0
+  HelixPrimitive-9e6e51:
+    fill_inner_ribbon: true
+    fillcolor: '#f1deb4'
+    height_scalar: 0.5
+    linecolor: '#191921'
+    linewidth_scalar: 1.0
+    ribbon_period: 3.0
+    ribbon_width: null
+    type: HelixPrimitive
+    xy_offset:
+    - 0
+    - 0
+    zorder_offset: -0.5
+  HelixPrimitive-b50d3c:
+    fill_inner_ribbon: true
+    fillcolor: '#cda9db'
+    height_scalar: 0.7
+    linecolor: '#191921'
+    linewidth_scalar: 1.0
+    ribbon_period: 3.0
+    ribbon_width: null
+    type: HelixPrimitive
+    xy_offset:
+    - 0
+    - 0
+    zorder_offset: -0.5
+  LinePrimitive-41d844:
+    fillcolor: w
+    height_scalar: 1.0
+    linecolor: '#191921'
+    linewidth_scalar: 1
+    type: LinePrimitive
+    xy_offset:
+    - 0
+    - 0
+    zorder_offset: -0.1
+  LinePrimitive-49b67b:
+    fillcolor: w
+    height_scalar: 1.0
+    linecolor: '#09967A'
+    linewidth_scalar: 5
+    type: LinePrimitive
+    xy_offset:
+    - 0
+    - 0
+    zorder_offset: -0.1
+  LinePrimitive-f0e387:
+    fillcolor: w
+    height_scalar: 1.0
+    linecolor: '#5fcb5b'
+    linewidth_scalar: 5
+    type: LinePrimitive
+    xy_offset:
+    - 0
+    - 0
+    zorder_offset: -0.1

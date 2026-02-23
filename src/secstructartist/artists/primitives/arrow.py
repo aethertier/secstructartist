@@ -1,0 +1,112 @@
+from __future__ import annotations
+from typing import Any, Dict, TYPE_CHECKING
+from matplotlib.patches import Polygon, Rectangle
+from .base import PrimitiveArtist
+
+if TYPE_CHECKING:
+    from matplotlib.axes import Axes
+    from ..drawstyle import DrawStyle
+
+
+class ArrowPrimitive(PrimitiveArtist):
+    """
+    Arrow-shaped primitive used to represent beta strands.
+
+    This primitive draws a filled polygon in the shape of an arrow, with an
+    optional shaft and configurable arrow tip length.
+    """
+
+    def __init__(
+        self,
+        *,
+        arrow_tip_length: float = 3.,
+        height_scalar2: float = None,
+        **kwargs,
+    ):
+        """
+        Parameters
+        ----------
+        arrow_tip_length : float, default=3.0
+            Length of the arrow tip in units of ``drawstyle.stride``.
+
+        height_scalar2 : float, optional
+            Height of the arrow shaft relative to the element height. If None,
+            it defaults to ``0.7 * height_scalar``.
+
+        Other Parameters
+        ----------------
+        xy_offset : tuple of float
+        height_scalar : float
+        linewidth_scalar : float
+        zorder_offset : float
+        linecolor : ColorType
+        fillcolor : ColorType or None
+            See :class:`PrimitiveArtist`.
+        """
+        super().__init__(**kwargs)
+        self.arrow_tip_length = arrow_tip_length
+        self._height_scalar2 = height_scalar2
+        
+    @property
+    def height_scalar2(self) -> float:
+        return .7 * self.height_scalar if self._height_scalar2 is None else self._height_scalar2
+    
+    @height_scalar2.setter
+    def height_scalar2(self, _value: float):
+        self._height_scalar2 = _value
+
+    def draw(self, x: float, y: float, length: int, ax: Axes, drawstyle: DrawStyle) -> Polygon:
+        x0, y2 = x + self.x_offset, y + self.y_offset
+        x2 = x0 + drawstyle.stride * length
+        x1 = x2 - self.arrow_tip_length * drawstyle.stride
+        y0 = y2 - .5 * drawstyle.height * self.height_scalar
+        y1 = y2 - .5 * drawstyle.height * self.height_scalar2
+        y3 = y2 + .5 * drawstyle.height * self.height_scalar2
+        y4 = y2 + .5 * drawstyle.height * self.height_scalar
+        
+        if x1 < x0:
+            # Case: Draw arrow without shaft
+            xypath = [
+                [x0, y0],
+                [x2, y2],
+                [x0, y4],
+            ]
+        else:
+            # Case: Path for arrow without shaft
+            xypath = [
+                [x0, y1],
+                [x1, y1],
+                [x1, y0],
+                [x2, y2],
+                [x1, y4],
+                [x1, y3],
+                [x0, y3],
+            ]
+
+        sheet = Polygon(xypath, closed=True, 
+            linewidth = drawstyle.linewidth * self.linewidth_scalar,
+            fill = (self.fillcolor is not None),
+            edgecolor = self.linecolor, 
+            facecolor = self.fillcolor,
+            zorder = drawstyle.zorder + self.zorder_offset
+        )
+        ax.add_patch(sheet)
+        ax.update_datalim(sheet.get_xy())
+        return sheet
+
+    def get_legend_handle(self, drawstyle: DrawStyle) -> Rectangle:
+        """Returns a handle for a legend, currently just a rectangle"""
+        rec = Rectangle(
+            (0.,0.), width=1., height=1.,
+            linewidth = drawstyle.linewidth * self.linewidth_scalar,
+            fill = (self.fillcolor is not None),
+            edgecolor = self.linecolor, 
+            facecolor = self.fillcolor,
+        )
+        return rec
+    
+    def to_dict(self) -> Dict[str, Any]:
+        return super().to_dict(
+            arrow_tip_length = self.arrow_tip_length, 
+            height_scalar2 = self._height_scalar2
+        )

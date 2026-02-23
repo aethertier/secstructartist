@@ -1,0 +1,82 @@
+drawstyle:
+  height: 1.0
+  linewidth: 0.7
+  stride: 1.0
+  zorder: 5
+elements:
+  ' ':
+    label: Loop
+    primitives:
+    - LinePrimitive-2300ca
+  '-':
+    label: Loop
+    primitives:
+    - LinePrimitive-2300ca
+  C:
+    label: Loop
+    primitives:
+    - LinePrimitive-2300ca
+  H:
+    label: $\alpha$-Helix
+    primitives:
+    - HelixPrimitive-2a373c
+  L:
+    label: Loop
+    primitives:
+    - LinePrimitive-2300ca
+  S:
+    label: $\beta$-Sheet
+    primitives:
+    - ArrowPrimitive-28194a
+  c:
+    label: Loop
+    primitives:
+    - LinePrimitive-2300ca
+  h:
+    label: $\alpha$-Helix
+    primitives:
+    - HelixPrimitive-2a373c
+  l:
+    label: Loop
+    primitives:
+    - LinePrimitive-2300ca
+  s:
+    label: $\beta$-Sheet
+    primitives:
+    - ArrowPrimitive-28194a
+primitives:
+  ArrowPrimitive-28194a:
+    arrow_tip_length: 3
+    fillcolor: '#e4e4e4'
+    height_scalar: 0.7
+    height_scalar2: 0.7
+    linecolor: '#000000'
+    linewidth_scalar: 1.0
+    type: ArrowPrimitive
+    xy_offset:
+    - 0
+    - 0
+    zorder_offset: 0.0
+  HelixPrimitive-2a373c:
+    fill_inner_ribbon: false
+    fillcolor: '#e4e4e4'
+    height_scalar: 1
+    linecolor: '#000000'
+    linewidth_scalar: 1.0
+    ribbon_period: 3.6
+    ribbon_width: null
+    type: HelixPrimitive
+    xy_offset:
+    - 0
+    - 0
+    zorder_offset: 0.0
+  LinePrimitive-2300ca:
+    fillcolor: w
+    height_scalar: 1.0
+    linecolor: '#000000'
+    linewidth_scalar: 1.5
+    type: LinePrimitive
+    xy_offset:
+    - 0
+    - 0
+    zorder_offset: -0.1

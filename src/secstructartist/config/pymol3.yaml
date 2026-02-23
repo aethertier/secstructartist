@@ -1,0 +1,118 @@
+drawstyle:
+  height: 1.0
+  linewidth: 0.7
+  stride: 1.0
+  zorder: 5
+elements:
+  ' ':
+    label: Loop
+    primitives:
+    - LinePrimitive-2ffcf7
+  '-':
+    label: Loop
+    primitives:
+    - LinePrimitive-2ffcf7
+  C:
+    label: Loop
+    primitives:
+    - LinePrimitive-2ffcf7
+  H:
+    label: Helix
+    primitives:
+    - HelixPrimitive-74c4db
+    - HelixPrimitive-4ee36b
+  L:
+    label: Loop
+    primitives:
+    - LinePrimitive-2ffcf7
+  S:
+    label: Sheet
+    primitives:
+    - ArrowPrimitive-e47b3b
+  c:
+    label: Loop
+    primitives:
+    - LinePrimitive-2ffcf7
+  h:
+    label: Helix
+    primitives:
+    - HelixPrimitive-74c4db
+    - HelixPrimitive-4ee36b
+  l:
+    label: Loop
+    primitives:
+    - LinePrimitive-2ffcf7
+  s:
+    label: Sheet
+    primitives:
+    - ArrowPrimitive-e47b3b
+primitives:
+  ArrowPrimitive-e47b3b:
+    arrow_tip_length: 3
+    fillcolor:
+    - 1.0
+    - 0.0
+    - 0.0
+    height_scalar: 0.65
+    height_scalar2: 0.4
+    linecolor:
+    - 0.0
+    - 0.0
+    - 0.0
+    linewidth_scalar: 1.0
+    type: ArrowPrimitive
+    xy_offset:
+    - 0
+    - 0
+    zorder_offset: 0.0
+  HelixPrimitive-4ee36b:
+    fill_inner_ribbon: true
+    fillcolor:
+    - 0.0
+    - 0.8
+    - 0.8
+    height_scalar: 0.9
+    linecolor:
+    - 0.0
+    - 0.0
+    - 0.0
+    linewidth_scalar: 1.0
+    ribbon_period: 3.6
+    ribbon_width: null
+    type: HelixPrimitive
+    xy_offset:
+    - 0
+    - 0
+    zorder_offset: -0.1
+  HelixPrimitive-74c4db:
+    fill_inner_ribbon: false
+    fillcolor:
+    - 0.0
+    - 1.0
+    - 1.0
+    height_scalar: 0.9
+    linecolor:
+    - 0.0
+    - 0.0
+    - 0.0
+    linewidth_scalar: 1.0
+    ribbon_period: 3.6
+    ribbon_width: null
+    type: HelixPrimitive
+    xy_offset:
+    - 0
+    - 0
+    zorder_offset: 0.0
+  LinePrimitive-2ffcf7:
+    fillcolor: w
+    height_scalar: 1.0
+    linecolor:
+    - 1.0
+    - 0
+    - 1.0
+    linewidth_scalar: 2
+    type: LinePrimitive
+    xy_offset:
+    - 0
+    - 0
+    zorder_offset: -0.1
