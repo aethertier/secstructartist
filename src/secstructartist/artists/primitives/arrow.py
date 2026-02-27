@@ -10,10 +10,10 @@ if TYPE_CHECKING:
 
 class ArrowPrimitive(PrimitiveArtist):
     """
-    Arrow-shaped primitive used to represent beta strands.
+    Draws an arrow-shape. This primitive typically represents beta strands.
 
-    This primitive draws a filled polygon in the shape of an arrow, with an
-    optional shaft and configurable arrow tip length.
+    The arrow-shape is generated as a polygon an can be filled. If the length
+    of the element is too short, only the arrow tip without a shaft is drawn.
     """
 
     def __init__(

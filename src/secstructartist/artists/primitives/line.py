@@ -10,10 +10,7 @@ if TYPE_CHECKING:
 
 class LinePrimitive(PrimitiveArtist):
     """
-    Line primitive used for drawing linear secondary structure elements.
-
-    This primitive draws a horizontal line segment whose length is determined
-    by the number of residues in the element.
+    Draws a straight line. This primitive typically represents random coil or loops.
     """
     def __init__(self, *, zorder_offset: float = -.1, **kwargs):
         super().__init__(zorder_offset=zorder_offset, **kwargs)
@@ -25,7 +22,8 @@ class LinePrimitive(PrimitiveArtist):
             [x0, x1], [y0, y0], 
             linewidth=drawstyle.linewidth * self.linewidth_scalar,
             color=self.linecolor,
-            zorder=drawstyle.zorder + self.zorder_offset
+            zorder=drawstyle.zorder + self.zorder_offset,
+            solid_capstyle="butt"
         )
         ax.add_line(line)
         ax.update_datalim(line.get_xydata())

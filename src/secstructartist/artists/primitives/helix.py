@@ -15,10 +15,10 @@ Vertices = List[Tuple[float, float]]
 
 class HelixPrimitive(PrimitiveArtist):
     """
-    Arrow-shaped primitive used to represent beta strands.
+    Draws a wound ribbon. This primitive typically represents helices.
 
-    This primitive draws a filled polygon in the shape of an arrow, with an
-    optional shaft and configurable arrow tip length.
+    The wound ribbon is generated as a PathPatch, and the *inside* can be made 
+    transparent allowing for color differences of the *inside* and *outside* helix.
     """
 
     def __init__(
