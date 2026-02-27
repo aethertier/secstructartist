@@ -3,7 +3,7 @@ import json
 import yaml
 from pathlib import Path
 from typing import Union
-from ..constants import SSA_CONFIGURATIONS
+from ..constants import SSA_CONFIGURATION_PRESETS
 from ..typing_ import ArtistKW, PathOrFile, FileFormat
 
 def infer_file_format(fname: str, fmt: FileFormat='auto'):
@@ -65,8 +65,8 @@ def load_configuration(config_: Union[ArtistKW, PathOrFile], format_: FileFormat
     }
 
     # Resolve named configurations
-    if isinstance(config_, str) and config_ in SSA_CONFIGURATIONS:
-        config_ = SSA_CONFIGURATIONS[config_]
+    if isinstance(config_, str) and config_ in SSA_CONFIGURATION_PRESETS:
+        config_ = SSA_CONFIGURATION_PRESETS[config_]
 
     # Path-like input
     if isinstance(config_, (str, os.PathLike)):

@@ -212,13 +212,13 @@ class SecStructArtist():
 
     def to_config(self, file_: Optional[PathOrFile], format_: FileFormat = 'auto'):
         """Write the SecStructArtist configuration to a file."""
-        from ..io import SSAConfigWriter
+        from ..config import SSAConfigWriter
         writer = SSAConfigWriter(self)
         writer.write(file_, format_=format_)
 
     @classmethod
     def from_config(cls, config_: Union[ArtistKW, PathOrFile], format_: FileFormat = 'auto') -> SecStructArtist:
         """Initializes a SecStructArtist based on a config file"""
-        from ..io import SSAConfigReader
+        from ..config import SSAConfigReader
         reader = SSAConfigReader(config_, format_=format_)
         return reader.get_secstructartist()

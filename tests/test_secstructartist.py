@@ -123,14 +123,14 @@ def test_getattr_invalid(mock_elements):
     with pytest.raises(AttributeError):
         _ = ssa.nonexistent
 
-@patch("secstructartist.io.SSAConfigWriter")
+@patch("secstructartist.config.SSAConfigWriter")
 def test_to_config_calls_writer(mock_writer, mock_elements):
     ssa = SecStructArtist(elements=mock_elements)
     instance = mock_writer.return_value
     ssa.to_config("file.json")
     instance.write.assert_called_once()
 
-@patch("secstructartist.io.SSAConfigReader")
+@patch("secstructartist.config.SSAConfigReader")
 def test_from_config_calls_reader(mock_reader):
     reader_instance = mock_reader.return_value
     reader_instance.get_secstructartist.return_value = "SSA"
