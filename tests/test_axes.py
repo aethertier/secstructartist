@@ -1,4 +1,6 @@
 import pytest
+import logging
+import warnings
 from unittest.mock import MagicMock
 import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
@@ -109,13 +111,19 @@ def test_draw_forwards_kwargs(ax, secstruct):
 # legend behavior
 # ---------------------------------------------------------------------
 
-def test_legend_falls_back_if_no_artist(ax):
+def test_legend_falls_back_if_no_artist(ax, caplog, recwarn):
     """
     If no SecStructArtist has been used,
     legend should fall back to matplotlib base legend.
     """
-    with pytest.warns(UserWarning, match='No artists with labels found to put in legend.'):
-        leg = ax.legend()
+    caplog.set_level(logging.WARNING)
+    leg = ax.legend()
+
+    warning_messages = [
+        *(str(w.message) for w in recwarn),
+        *(r.getMessage() for r in caplog.records)
+    ]
+    assert any("No artists with labels found" in msg for msg in warning_messages)
     assert leg is not None
 
 def test_legend_falls_back_if_handles_provided(ax):
