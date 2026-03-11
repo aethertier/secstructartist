@@ -37,8 +37,8 @@ elements:
   I:
     label: $\pi$-Helix
     primitives:
-    - HelixPrimitive-453e54
-    - HelixPrimitive-b50d3c
+    - HelixPrimitive-745fce
+    - HelixPrimitive-b25715
   L:
     label: Loop
     primitives:
@@ -81,8 +81,8 @@ elements:
   i:
     label: $\pi$-Helix
     primitives:
-    - HelixPrimitive-453e54
-    - HelixPrimitive-b50d3c
+    - HelixPrimitive-745fce
+    - HelixPrimitive-b25715
   l:
     label: Loop
     primitives:
@@ -151,19 +151,6 @@ primitives:
     - 0
     - 0
     zorder_offset: -0.5
-  HelixPrimitive-453e54:
-    fill_inner_ribbon: false
-    fillcolor: '#9343b3'
-    height_scalar: 0.7
-    linecolor: '#191921'
-    linewidth_scalar: 1.0
-    ribbon_period: 3.0
-    ribbon_width: null
-    type: HelixPrimitive
-    xy_offset:
-    - 0
-    - 0
-    zorder_offset: 0.0
   HelixPrimitive-5251cc:
     fill_inner_ribbon: true
     fillcolor: '#edb7d6'
@@ -184,6 +171,19 @@ primitives:
     linecolor: '#191921'
     linewidth_scalar: 1.0
     ribbon_period: 3.6
+    ribbon_width: null
+    type: HelixPrimitive
+    xy_offset:
+    - 0
+    - 0
+    zorder_offset: 0.0
+  HelixPrimitive-745fce:
+    fill_inner_ribbon: false
+    fillcolor: '#9343b3'
+    height_scalar: 1.0
+    linecolor: '#191921'
+    linewidth_scalar: 1.0
+    ribbon_period: 4.1
     ribbon_width: null
     type: HelixPrimitive
     xy_offset:
@@ -216,13 +216,13 @@ primitives:
     - 0
     - 0
     zorder_offset: -0.5
-  HelixPrimitive-b50d3c:
+  HelixPrimitive-b25715:
     fill_inner_ribbon: true
     fillcolor: '#cda9db'
-    height_scalar: 0.7
+    height_scalar: 1.0
     linecolor: '#191921'
     linewidth_scalar: 1.0
-    ribbon_period: 3.0
+    ribbon_period: 4.1
     ribbon_width: null
     type: HelixPrimitive
     xy_offset:
