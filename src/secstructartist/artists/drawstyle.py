@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import Dict
 from dataclasses import dataclass, asdict, replace
-
+from ..typing_ import ColorType
 
 @dataclass(frozen=True)
 class DrawStyle:
@@ -9,6 +9,8 @@ class DrawStyle:
     height: float = 1.
     stride: float = 1.
     linewidth: float = 1.
+    linecolor: ColorType = '#000000'
+    fillcolor: ColorType = '#ffffff'
     zorder: float = 5.
 
     def with_updates(self, **changes) -> DrawStyle:

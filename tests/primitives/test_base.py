@@ -4,9 +4,11 @@ from secstructartist.artists.primitives.base import PrimitiveArtist
 
 
 class DummyPrimitive(PrimitiveArtist):
-    def draw(self, *args, **kwargs):
+    @staticmethod
+    def _draw(*args, **kwargs):
         return None
-    def get_legend_handle(self, *args, **kwargs):
+    @staticmethod
+    def _get_legend_handle(*args, **kwargs):
         return None
     
 
