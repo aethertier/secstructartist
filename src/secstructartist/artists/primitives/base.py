@@ -9,12 +9,12 @@ if TYPE_CHECKING:
     from matplotlib.axes import Axes
 
 
-@dataclass
+@dataclass(slots=True)
 class DrawContext:
     """Context for primitives' ``_draw`` method"""
-    x0: float
-    x1: float
-    y_: float
+    x_left: float
+    x_right: float
+    y_center: float
     height: float
     linewidth: float
     linecolor: ColorType
@@ -81,11 +81,13 @@ class PrimitiveArtist(abc.ABC):
     def _get_legend_handle(ctx: DrawContext) -> DrawnArtist:
         pass
 
-    def resolve_drawstyle(self, drawstyle: DrawStyle, x: float=1, y: float=1, length: int=1) -> DrawContext:        
+    def resolve_drawstyle(self, drawstyle: DrawStyle, x: float=1, y: float=1, length: int=1) -> DrawContext:
+        x_left = x + self.x_offset
+        x_right = x_left + length * drawstyle.stride
         return DrawContext(
-            x0 = x + self.x_offset,
-            x1 = x + self.x_offset + length * drawstyle.stride,
-            y_ = y + self.y_offset,
+            x_left = x_left,
+            x_right = x_right,
+            y_center = y + self.y_offset,
             height = drawstyle.height * self.height_scalar,
             linewidth = drawstyle.linewidth * self.linewidth_scalar,
             linecolor = self.linecolor or drawstyle.linecolor,
