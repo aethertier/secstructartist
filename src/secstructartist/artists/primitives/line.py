@@ -28,7 +28,7 @@ class LinePrimitive(PrimitiveArtist):
 
     @staticmethod
     def _get_legend_handle(ctx: DrawContext) -> Line2D:
-        line = Line2D([0, 1], [0, 0],
+        line = Line2D([0, 1], [0.5, 0.5],
             linewidth=ctx.linewidth,
             color=ctx.linecolor,
             alpha = ctx.alpha,

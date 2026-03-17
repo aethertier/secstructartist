@@ -86,7 +86,7 @@ def test_load_configuration_named_preset(tmp_path, monkeypatch):
     p.write_text(json.dumps(data))
 
     monkeypatch.setattr(
-        "secstructartist.config._helpers.SSA_CONFIGURATION_PRESETS",
+        "secstructartist.config._helpers.SSA_PRESETS",
         {"preset": str(p)}
     )
 
