@@ -1,0 +1,96 @@
+drawstyle:
+  alpha: 1.0
+  fillcolor: '#ffffff'
+  height: 1.0
+  linecolor: '#000000'
+  linewidth: 0.7
+  stride: 1.0
+  zorder: 5
+elements:
+  ' ':
+    label: Loop
+    primitives:
+    - LinePrimitive-058771
+  '-':
+    label: Loop
+    primitives:
+    - LinePrimitive-058771
+  H:
+    label: $\alpha$-Helix
+    primitives:
+    - HelixPrimitive-af29be
+    - HelixPrimitive-1e7c84
+  L:
+    label: Loop
+    primitives:
+    - LinePrimitive-058771
+  S:
+    label: $\beta$-Sheet
+    primitives:
+    - ArrowPrimitive-bcdca7
+  h:
+    label: $\alpha$-Helix
+    primitives:
+    - HelixPrimitive-af29be
+    - HelixPrimitive-1e7c84
+  l:
+    label: Loop
+    primitives:
+    - LinePrimitive-058771
+  s:
+    label: $\beta$-Sheet
+    primitives:
+    - ArrowPrimitive-bcdca7
+primitives:
+  ArrowPrimitive-bcdca7:
+    alpha_scalar: 1.0
+    arrow_tip_length: 3
+    fillcolor: '#ededed'
+    height_scalar: 0.6
+    height_scalar2: 0.6
+    linecolor: '#333333'
+    linewidth_scalar: 1.0
+    type: ArrowPrimitive
+    xy_offset:
+    - 0
+    - 0
+    zorder_offset: 0.0
+  HelixPrimitive-1e7c84:
+    alpha_scalar: 1.0
+    fill_inner_ribbon: true
+    fillcolor: '#fafafa'
+    height_scalar: 1
+    linecolor: none
+    linewidth_scalar: 1.0
+    ribbon_period: 3.6
+    ribbon_width: null
+    type: HelixPrimitive
+    xy_offset:
+    - 0
+    - 0
+    zorder_offset: -0.1
+  HelixPrimitive-af29be:
+    alpha_scalar: 1.0
+    fill_inner_ribbon: false
+    fillcolor: '#ededed'
+    height_scalar: 1
+    linecolor: '#333333'
+    linewidth_scalar: 1.0
+    ribbon_period: 3.6
+    ribbon_width: null
+    type: HelixPrimitive
+    xy_offset:
+    - 0
+    - 0
+    zorder_offset: 0.0
+  LinePrimitive-058771:
+    alpha_scalar: 1.0
+    fillcolor: null
+    height_scalar: 1.0
+    linecolor: '#333333'
+    linewidth_scalar: 1.5
+    type: LinePrimitive
+    xy_offset:
+    - 0
+    - 0
+    zorder_offset: -0.1

@@ -1,5 +1,8 @@
 drawstyle:
+  alpha: 1.0
+  fillcolor: '#ffffff'
   height: 1.0
+  linecolor: '#000000'
   linewidth: 0.7
   stride: 1.0
   zorder: 5
@@ -7,51 +10,44 @@ elements:
   ' ':
     label: Loop
     primitives:
-    - LinePrimitive-29d7c5
+    - LinePrimitive-138733
   '-':
     label: Loop
     primitives:
-    - LinePrimitive-29d7c5
-  C:
-    label: Loop
-    primitives:
-    - LinePrimitive-29d7c5
+    - LinePrimitive-138733
   H:
     label: Helix
     primitives:
-    - HelixPrimitive-5f876a
-    - HelixPrimitive-ae2f9f
+    - HelixPrimitive-0f311d
+    - HelixPrimitive-eba8e2
   L:
     label: Loop
     primitives:
-    - LinePrimitive-29d7c5
+    - LinePrimitive-138733
   S:
     label: Sheet
     primitives:
-    - ArrowPrimitive-fb1f4b
-  c:
-    label: Loop
-    primitives:
-    - LinePrimitive-29d7c5
+    - ArrowPrimitive-9a2175
   h:
     label: Helix
     primitives:
-    - HelixPrimitive-5f876a
-    - HelixPrimitive-ae2f9f
+    - HelixPrimitive-0f311d
+    - HelixPrimitive-eba8e2
   l:
     label: Loop
     primitives:
-    - LinePrimitive-29d7c5
+    - LinePrimitive-138733
   s:
     label: Sheet
     primitives:
-    - ArrowPrimitive-fb1f4b
+    - ArrowPrimitive-9a2175
 primitives:
-  ArrowPrimitive-fb1f4b:
+  ArrowPrimitive-9a2175:
+    alpha_scalar: 1.0
     arrow_tip_length: 3
     fillcolor:
     - 1.0
-    - 1.0
+    - 0.0
     - 0.0
     height_scalar: 0.65
     height_scalar2: 0.4
@@ -65,12 +61,13 @@ primitives:
     - 0
     - 0
     zorder_offset: 0.0
-  HelixPrimitive-5f876a:
+  HelixPrimitive-0f311d:
+    alpha_scalar: 1.0
     fill_inner_ribbon: false
     fillcolor:
+    - 0.0
     - 1.0
-    - 0.0
-    - 0.0
+    - 1.0
     height_scalar: 0.9
     linecolor:
     - 0.0
@@ -84,12 +81,13 @@ primitives:
     - 0
     - 0
     zorder_offset: 0.0
-  HelixPrimitive-ae2f9f:
+  HelixPrimitive-eba8e2:
+    alpha_scalar: 1.0
     fill_inner_ribbon: true
     fillcolor:
-    - 0.6
     - 0.0
-    - 0.0
+    - 0.8
+    - 0.8
     height_scalar: 0.9
     linecolor:
     - 0.0
@@ -103,13 +101,14 @@ primitives:
     - 0
     - 0
     zorder_offset: -0.1
-  LinePrimitive-29d7c5:
-    fillcolor: w
+  LinePrimitive-138733:
+    alpha_scalar: 1.0
+    fillcolor: null
     height_scalar: 1.0
     linecolor:
-    - 0.0
     - 1.0
-    - 0.0
+    - 0
+    - 1.0
     linewidth_scalar: 2
     type: LinePrimitive
     xy_offset:

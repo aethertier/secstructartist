@@ -11,6 +11,9 @@ class DummyDrawStyle:
     height: float = 1.0
     stride: float = 2.0
     linewidth: float = 1.5
+    linecolor: str = 'red'
+    fillcolor: str = '#c0ffee'
+    alpha: float = 1.0
     zorder: float = 5.0
 
 

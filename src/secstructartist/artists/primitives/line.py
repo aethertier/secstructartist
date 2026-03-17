@@ -1,11 +1,7 @@
 from __future__ import annotations
-from typing import Any, Dict, TYPE_CHECKING
+from matplotlib.axes import Axes
 from matplotlib.lines import Line2D
-from .base import PrimitiveArtist
-
-if TYPE_CHECKING:
-    from matplotlib.axes import Axes
-    from ..drawstyle import DrawStyle
+from .base import PrimitiveArtist, DrawContext
 
 
 class LinePrimitive(PrimitiveArtist):
@@ -15,26 +11,26 @@ class LinePrimitive(PrimitiveArtist):
     def __init__(self, *, zorder_offset: float = -.1, **kwargs):
         super().__init__(zorder_offset=zorder_offset, **kwargs)
 
-    def draw(self, x: float, y: float, length: int, ax: Axes, drawstyle: DrawStyle) -> Line2D:
-        x0, y0 = x + self.x_offset, y + self.y_offset
-        x1 = x0 + drawstyle.stride * length
+    @staticmethod
+    def _draw(ctx: DrawContext, ax: Axes) -> Line2D:
+        x0, x1 = ctx.x, ctx.x + ctx.dx
         line = Line2D(
-            [x0, x1], [y0, y0], 
-            linewidth=drawstyle.linewidth * self.linewidth_scalar,
-            color=self.linecolor,
-            zorder=drawstyle.zorder + self.zorder_offset,
+            [x0, x1], [ctx.y, ctx.y],
+            linewidth=ctx.linewidth,
+            color=ctx.linecolor,
+            alpha = ctx.alpha,
+            zorder=ctx.zorder,
             solid_capstyle="butt"
         )
         ax.add_line(line)
         ax.update_datalim(line.get_xydata())
         return line
 
-    def get_legend_handle(self, drawstyle: DrawStyle) -> Line2D:
-        line = Line2D([0.0, 1.0], [0.5, 0.5],
-            linewidth=drawstyle.linewidth * self.linewidth_scalar,
-            color=self.linecolor,
+    @staticmethod
+    def _get_legend_handle(ctx: DrawContext) -> Line2D:
+        line = Line2D([0, 1], [0.5, 0.5],
+            linewidth=ctx.linewidth,
+            color=ctx.linecolor,
+            alpha = ctx.alpha,
         )
         return line
-
-    def to_dict(self) -> Dict[str, Any]:
-        return super().to_dict()
