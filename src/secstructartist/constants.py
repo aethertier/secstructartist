@@ -7,7 +7,7 @@ __all__ = [
     'SSA_PRESETS'
 ]
 
-SSA_VERSION = '2.2.0'
+SSA_VERSION = '2.2.1'
 SSA_ROOT = Path(__file__).parent
 
 
