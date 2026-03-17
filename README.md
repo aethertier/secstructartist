@@ -3,7 +3,7 @@
 This package allows to include pretty secondary structure schemes in 
 matplotlib plots.
 
-![Example plot](https://github.com/bickeld/secstructartist/blob/main/_dev/images/example_plot.png)
+![plddt_plot.png](_dev/images/plddt_plot.png)
 
 
 ## Table of content
@@ -86,7 +86,7 @@ secstruct_str = (
 ssa.draw_secondary_structure(secstruct_str)
 ```
 
-![simple_example.png](https://github.com/bickeld/secstructartist/blob/main/_dev/images/plddt_plot.png)
+![simple_example.png](_dev/images/simple_example.png)
 
 
 ### Additional styles
@@ -99,7 +99,7 @@ styles come in two categories:
 Moreover, users are free to define their own styles, and save them as custom configuration styles
 for later use. For examples in how to create custom styles, check this [Jupyter notebook](https://github.com/bickeld/secstructartist/blob/main/examples/example_artistdef.ipynb).
 
-![simple_example.png](https://github.com/bickeld/secstructartist/blob/main/_dev/images/plddt_plot.png)
+![styles_overview.png](_dev/images/styles_overview.png)
 
 
 ## License
