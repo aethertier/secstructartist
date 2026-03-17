@@ -1,5 +1,8 @@
 drawstyle:
+  alpha: 1.0
+  fillcolor: '#ffffff'
   height: 1.0
+  linecolor: '#000000'
   linewidth: 0.5
   stride: 1.0
   zorder: 5
@@ -7,101 +10,94 @@ elements:
   ' ':
     label: Loop
     primitives:
-    - LinePrimitive-ad9578
+    - LinePrimitive-2e3bc2
   '-':
     label: Loop
     primitives:
-    - LinePrimitive-ad9578
+    - LinePrimitive-2e3bc2
   B:
     label: $\beta$-Bridge
     primitives:
-    - ArrowPrimitive-a5ae9a
+    - ArrowPrimitive-c97f22
   C:
     label: Loop
     primitives:
-    - LinePrimitive-ad9578
+    - LinePrimitive-2e3bc2
   E:
     label: Extended $\beta$-Strand
     primitives:
-    - ArrowPrimitive-3ddb3d
+    - ArrowPrimitive-b8aa62
   G:
     label: $3_{10}$-Helix
     primitives:
-    - HelixPrimitive-d299dd
-    - HelixPrimitive-5154b9
+    - HelixPrimitive-873f8c
+    - HelixPrimitive-fc3883
   H:
     label: $\alpha$-Helix
     primitives:
-    - HelixPrimitive-d2675d
-    - HelixPrimitive-059578
+    - HelixPrimitive-1ef1c3
+    - HelixPrimitive-d14ba2
   I:
     label: $\pi$-Helix
     primitives:
-    - HelixPrimitive-f1eddf
-    - HelixPrimitive-ee83c5
-  L:
-    label: Loop
-    primitives:
-    - LinePrimitive-ad9578
+    - HelixPrimitive-2a394d
+    - HelixPrimitive-3c694f
   P:
     label: $\kappa$-Helix
     primitives:
-    - HelixPrimitive-51ef2e
-    - HelixPrimitive-3cfc68
+    - HelixPrimitive-42efe2
+    - HelixPrimitive-4b7fef
   S:
     label: Bend
     primitives:
-    - LinePrimitive-9c904e
+    - LinePrimitive-4d4940
   T:
     label: H-bonded turn
     primitives:
-    - LinePrimitive-f78dc9
+    - LinePrimitive-635be3
   b:
     label: $\beta$-Bridge
     primitives:
-    - ArrowPrimitive-a5ae9a
+    - ArrowPrimitive-c97f22
   c:
     label: Loop
     primitives:
-    - LinePrimitive-ad9578
+    - LinePrimitive-2e3bc2
   e:
     label: Extended $\beta$-Strand
     primitives:
-    - ArrowPrimitive-3ddb3d
+    - ArrowPrimitive-b8aa62
   g:
     label: $3_{10}$-Helix
     primitives:
-    - HelixPrimitive-d299dd
-    - HelixPrimitive-5154b9
+    - HelixPrimitive-873f8c
+    - HelixPrimitive-fc3883
   h:
     label: $\alpha$-Helix
     primitives:
-    - HelixPrimitive-d2675d
-    - HelixPrimitive-059578
+    - HelixPrimitive-1ef1c3
+    - HelixPrimitive-d14ba2
   i:
     label: $\pi$-Helix
     primitives:
-    - HelixPrimitive-f1eddf
-    - HelixPrimitive-ee83c5
-  l:
-    label: Loop
-    primitives:
-    - LinePrimitive-ad9578
+    - HelixPrimitive-2a394d
+    - HelixPrimitive-3c694f
   p:
     label: $\kappa$-Helix
     primitives:
-    - HelixPrimitive-51ef2e
-    - HelixPrimitive-3cfc68
+    - HelixPrimitive-42efe2
+    - HelixPrimitive-4b7fef
   s:
     label: Bend
     primitives:
-    - LinePrimitive-9c904e
+    - LinePrimitive-4d4940
   t:
     label: H-bonded turn
     primitives:
-    - LinePrimitive-f78dc9
+    - LinePrimitive-635be3
 primitives:
-  ArrowPrimitive-3ddb3d:
+  ArrowPrimitive-b8aa62:
+    alpha_scalar: 1.0
     arrow_tip_length: 3
     fillcolor: '#ccddbb'
     height_scalar: 0.65
@@ -113,7 +109,8 @@ primitives:
     - 0
     - 0
     zorder_offset: 0.0
-  ArrowPrimitive-a5ae9a:
+  ArrowPrimitive-c97f22:
+    alpha_scalar: 1.0
     arrow_tip_length: 3
     fillcolor: '#ccaadd'
     height_scalar: 0.65
@@ -125,59 +122,8 @@ primitives:
     - 0
     - 0
     zorder_offset: 0.0
-  HelixPrimitive-059578:
-    fill_inner_ribbon: true
-    fillcolor: '#ccccee'
-    height_scalar: 0.9
-    linecolor: '#111111'
-    linewidth_scalar: 1.0
-    ribbon_period: 3.6
-    ribbon_width: null
-    type: HelixPrimitive
-    xy_offset:
-    - 0
-    - 0
-    zorder_offset: -0.5
-  HelixPrimitive-3cfc68:
-    fill_inner_ribbon: true
-    fillcolor: '#ffddbb'
-    height_scalar: 0.5
-    linecolor: '#111111'
-    linewidth_scalar: 1.0
-    ribbon_period: 3.0
-    ribbon_width: null
-    type: HelixPrimitive
-    xy_offset:
-    - 0
-    - 0
-    zorder_offset: -0.5
-  HelixPrimitive-5154b9:
-    fill_inner_ribbon: true
-    fillcolor: '#bbeeee'
-    height_scalar: 0.7
-    linecolor: '#111111'
-    linewidth_scalar: 1.0
-    ribbon_period: 3.0
-    ribbon_width: null
-    type: HelixPrimitive
-    xy_offset:
-    - 0
-    - 0
-    zorder_offset: -0.5
-  HelixPrimitive-51ef2e:
-    fill_inner_ribbon: false
-    fillcolor: '#ffbb22'
-    height_scalar: 0.5
-    linecolor: '#111111'
-    linewidth_scalar: 1.0
-    ribbon_period: 3.0
-    ribbon_width: null
-    type: HelixPrimitive
-    xy_offset:
-    - 0
-    - 0
-    zorder_offset: 0.0
-  HelixPrimitive-d2675d:
+  HelixPrimitive-1ef1c3:
+    alpha_scalar: 1.0
     fill_inner_ribbon: false
     fillcolor: '#8888cc'
     height_scalar: 0.9
@@ -190,33 +136,8 @@ primitives:
     - 0
     - 0
     zorder_offset: 0.0
-  HelixPrimitive-d299dd:
-    fill_inner_ribbon: false
-    fillcolor: '#66ccee'
-    height_scalar: 0.7
-    linecolor: '#111111'
-    linewidth_scalar: 1.0
-    ribbon_period: 3.0
-    ribbon_width: null
-    type: HelixPrimitive
-    xy_offset:
-    - 0
-    - 0
-    zorder_offset: 0.0
-  HelixPrimitive-ee83c5:
-    fill_inner_ribbon: true
-    fillcolor: '#eebbcc'
-    height_scalar: 1.0
-    linecolor: '#111111'
-    linewidth_scalar: 1.0
-    ribbon_period: 4.1
-    ribbon_width: null
-    type: HelixPrimitive
-    xy_offset:
-    - 0
-    - 0
-    zorder_offset: -0.5
-  HelixPrimitive-f1eddf:
+  HelixPrimitive-2a394d:
+    alpha_scalar: 1.0
     fill_inner_ribbon: false
     fillcolor: '#dd5588'
     height_scalar: 1.0
@@ -229,18 +150,93 @@ primitives:
     - 0
     - 0
     zorder_offset: 0.0
-  LinePrimitive-9c904e:
-    fillcolor: w
+  HelixPrimitive-3c694f:
+    alpha_scalar: 1.0
+    fill_inner_ribbon: true
+    fillcolor: '#eebbcc'
     height_scalar: 1.0
-    linecolor: '#eecc66'
-    linewidth_scalar: 5
-    type: LinePrimitive
+    linecolor: '#111111'
+    linewidth_scalar: 1.0
+    ribbon_period: 4.1
+    ribbon_width: null
+    type: HelixPrimitive
     xy_offset:
     - 0
     - 0
-    zorder_offset: -0.1
-  LinePrimitive-ad9578:
-    fillcolor: w
+    zorder_offset: -0.5
+  HelixPrimitive-42efe2:
+    alpha_scalar: 1.0
+    fill_inner_ribbon: false
+    fillcolor: '#ffbb22'
+    height_scalar: 0.5
+    linecolor: '#111111'
+    linewidth_scalar: 1.0
+    ribbon_period: 3.0
+    ribbon_width: null
+    type: HelixPrimitive
+    xy_offset:
+    - 0
+    - 0
+    zorder_offset: 0.0
+  HelixPrimitive-4b7fef:
+    alpha_scalar: 1.0
+    fill_inner_ribbon: true
+    fillcolor: '#ffddbb'
+    height_scalar: 0.5
+    linecolor: '#111111'
+    linewidth_scalar: 1.0
+    ribbon_period: 3.0
+    ribbon_width: null
+    type: HelixPrimitive
+    xy_offset:
+    - 0
+    - 0
+    zorder_offset: -0.5
+  HelixPrimitive-873f8c:
+    alpha_scalar: 1.0
+    fill_inner_ribbon: false
+    fillcolor: '#66ccee'
+    height_scalar: 0.7
+    linecolor: '#111111'
+    linewidth_scalar: 1.0
+    ribbon_period: 3.0
+    ribbon_width: null
+    type: HelixPrimitive
+    xy_offset:
+    - 0
+    - 0
+    zorder_offset: 0.0
+  HelixPrimitive-d14ba2:
+    alpha_scalar: 1.0
+    fill_inner_ribbon: true
+    fillcolor: '#ccccee'
+    height_scalar: 0.9
+    linecolor: '#111111'
+    linewidth_scalar: 1.0
+    ribbon_period: 3.6
+    ribbon_width: null
+    type: HelixPrimitive
+    xy_offset:
+    - 0
+    - 0
+    zorder_offset: -0.5
+  HelixPrimitive-fc3883:
+    alpha_scalar: 1.0
+    fill_inner_ribbon: true
+    fillcolor: '#bbeeee'
+    height_scalar: 0.7
+    linecolor: '#111111'
+    linewidth_scalar: 1.0
+    ribbon_period: 3.0
+    ribbon_width: null
+    type: HelixPrimitive
+    xy_offset:
+    - 0
+    - 0
+    zorder_offset: -0.5
+  LinePrimitive-2e3bc2:
+    alpha_scalar: 1.0
+    fillcolor: null
     height_scalar: 1.0
     linecolor: '#111111'
     linewidth_scalar: 1
@@ -249,8 +245,20 @@ primitives:
     - 0
     - 0
     zorder_offset: -0.1
-  LinePrimitive-f78dc9:
-    fillcolor: w
+  LinePrimitive-4d4940:
+    alpha_scalar: 1.0
+    fillcolor: null
+    height_scalar: 1.0
+    linecolor: '#eecc66'
+    linewidth_scalar: 5
+    type: LinePrimitive
+    xy_offset:
+    - 0
+    - 0
+    zorder_offset: -0.1
+  LinePrimitive-635be3:
+    alpha_scalar: 1.0
+    fillcolor: null
     height_scalar: 1.0
     linecolor: '#aaaaaa'
     linewidth_scalar: 5

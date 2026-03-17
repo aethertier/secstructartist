@@ -1,9 +1,10 @@
-import os, io
+import io
 import json
-import yaml
+import os
 from pathlib import Path
 from typing import Union
-from ..constants import SSA_CONFIGURATION_PRESETS
+import yaml
+from ..constants import SSA_PRESETS
 from ..typing_ import ArtistKW, PathOrFile, FileFormat
 
 def infer_file_format(fname: str, fmt: FileFormat='auto'):
@@ -33,7 +34,7 @@ def infer_file_format(fname: str, fmt: FileFormat='auto'):
 
     if fmt in ['json', 'yaml']:
         return fmt
-    
+
     raise ValueError(f"Unknown configuration file format: '{fmt}'")
 
 def load_configuration(config_: Union[ArtistKW, PathOrFile], format_: FileFormat='auto'):
@@ -65,16 +66,16 @@ def load_configuration(config_: Union[ArtistKW, PathOrFile], format_: FileFormat
     }
 
     # Resolve named configurations
-    if isinstance(config_, str) and config_ in SSA_CONFIGURATION_PRESETS:
-        config_ = SSA_CONFIGURATION_PRESETS[config_]
+    if isinstance(config_, str) and config_ in SSA_PRESETS:
+        config_ = SSA_PRESETS[config_]
 
     # Path-like input
     if isinstance(config_, (str, os.PathLike)):
         path = Path(config_)
         fmt = infer_file_format(path.name, format_)
-        with path.open("r") as fh:
+        with path.open('r', encoding='utf-8') as fh:
             return _loaders[fmt](fh)
-    
+
     # File handle input
     if isinstance(config_, io.IOBase):
         if format_ == 'auto' and not hasattr(config_, 'name'):
@@ -83,7 +84,7 @@ def load_configuration(config_: Union[ArtistKW, PathOrFile], format_: FileFormat
             )
         fmt = infer_file_format(config_.name, format_)
         return _loaders[fmt](config_)
-    
+
     raise TypeError(
          "config must be a path, file-like object, or named configuration key"
     )
@@ -123,9 +124,9 @@ def write_configuration(
     if isinstance(file_, (str, os.PathLike)):
         path = Path(file_)
         fmt = infer_file_format(path.name, format_)
-        with path.open("w") as fh:
+        with path.open('w', encoding='utf-8') as fh:
             return _dumpers[fmt](data, fh, **kwargs)
-    
+
     # File handle input
     elif isinstance(file_, io.IOBase):
         if format_ == 'auto' and not hasattr(file_, 'name'):
@@ -134,8 +135,6 @@ def write_configuration(
             )
         fmt = infer_file_format(file_.name, format_)
         return _dumpers[fmt](data, file_, **kwargs)
-    
+
     else:
-        raise TypeError(
-            "file_ must be a path or file-like object"
-        )
+        raise TypeError('file_ must be a path or file-like object')
