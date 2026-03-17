@@ -11,6 +11,7 @@ class DrawStyle:
     linewidth: float = 1.
     linecolor: ColorType = '#000000'
     fillcolor: ColorType = '#ffffff'
+    alpha: float = 1.
     zorder: float = 5.
 
     def with_updates(self, **changes) -> DrawStyle:
