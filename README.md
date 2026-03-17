@@ -3,7 +3,8 @@
 This package allows to include pretty secondary structure schemes in 
 matplotlib plots.
 
-![example01.png](https://github.com/bickeld/secstructartist/blob/main/examples/example01.png)
+![Example plot](https://github.com/bickeld/secstructartist/blob/main/_dev/images/example_plot.png)
+
 
 ## Table of content
 
@@ -13,10 +14,11 @@ matplotlib plots.
     * [Installation from GitHub](#installation-from-github)
 * [Usage](#usage)
     * [A simple example](#a-simple-example)
-    * [Customizing your plots](#customizing-your-plots)
+    * [Additional styles](#additional-styles)
 * [License](#license)
 * [Contributing](#contributing)
 * [Authors](#authors)
+
 
 ## Installation
 
@@ -42,7 +44,6 @@ source secstructartist/bin/activate
 pip install secstructartist
 ```
 
-
 ### Installation from GitHub
 
 Here, you will download the repository, and manually build and install the
@@ -60,36 +61,57 @@ cd secstructartist
 # 3. Install the package
 make install
 
-# 4. Optionally test
+# 4. Test installation (optional)
 make test
 ```
 
 ## Usage
 
-In the `examples/` directory there are Jupyter notebooks with plenty of code 
-examples on how for simple and advanced use cases. Therefore, only the basic 
-usage will be covered here.
+In the `examples/` directory there are 
+[Jupyter notebooks](https://github.com/bickeld/secstructartist/blob/main/examples/example_plots.ipynb) 
+with plenty of code examples on how for simple and advanced use cases. 
+Therefore, only the basic usage will be covered here.
 
-The simplest possible use case:
+### A simple example
 
 ```python
 import secstructartist as ssa
 
-secstruct_str = 'LLLLLLLSSSSLLLLLLHHHHHHHHHHHHHLLLSSSSSSSSLLHHHHHHHHHHHHHHLLSSSSSSSSSLLSSSSSSSSL'
+secstruct_str = (
+    'LLHHHHHHHHHHHHHHHHHHLLLLLLLLLLLLLLLLLLLLHHHHHHHLSSSSSSSSSSLL'
+    'LLSSSSSSSSLLLLSSSSSSLLLLLHHHHHHLLLLLSSSLLLLLLLLSSSHHHHHHHHHH'
+    'HHHHHHHHHHHHHHHLLLSSSSSSSHHHHHHHHHHHHHHHLLLLLSSSSSSLLLLLL'
+)
 
 ssa.draw_secondary_structure(secstruct_str)
 ```
 
-![example00.png](https://github.com/bickeld/secstructartist/blob/main/examples/example00.png)
+![simple_example.png](https://github.com/bickeld/secstructartist/blob/main/_dev/images/plddt_plot.png)
+
+
+### Additional styles
+
+The module comes with a couple of preset styles to choose from. These preset 
+styles come in two categories: 
+- **HSL style** only use three secondary structure class (Helix, Sheet, Loop) as shown in the example above.
+- **DSSP styles** on the other hand can parse the eight secondary structure classes returned by programs like DSSP or STRIDE.
+
+Moreover, users are free to define their own styles, and save them as custom configuration styles
+for later use. For examples in how to create custom styles, check this [Jupyter notebook](https://github.com/bickeld/secstructartist/blob/main/examples/example_artistdef.ipynb).
+
+![simple_example.png](https://github.com/bickeld/secstructartist/blob/main/_dev/images/plddt_plot.png)
+
 
 ## License
 
 Distributed under the GNU General Public License v3 (GPLv3) License.
 
+
 ## Contributing
 
 If you find a bug, please open a [bug report](https://github.com/bickeld/secstructartist/issues/new?labels=bug).
 If you have an idea for an improvement or new feature, please open a [feature request](https://github.com/bickeld/secstructartist/issues/new?labels=enhancement).
+
 
 ## Authors
 
