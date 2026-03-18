@@ -1,3 +1,8 @@
+[![GitHub release](https://img.shields.io/github/v/release/aethertier/secstructartist?logo=github&label=GitHub%20release)](https://github.com/aethertier/secstructartist)
+[![PyPI version](https://img.shields.io/pypi/v/secstructartist?logo=pypi&label=PyPI%20version)](https://pypi.org/project/secstructartist/)
+[![PyPI python version](https://img.shields.io/pypi/pyversions/secstructartist)](https://pypi.org/project/secstructartist/)
+[![License: GPLv3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+
 # secstructartist
 
 This package allows to include pretty secondary structure schemes in 
@@ -88,16 +93,35 @@ ssa.draw_secondary_structure(secstruct_str)
 
 ![simple_example.png](_dev/images/simple_example.png)
 
-
 ### Additional styles
 
 The module comes with a couple of preset styles to choose from. These preset 
-styles come in two categories: 
-- **HSL style** only use three secondary structure class (Helix, Sheet, Loop) as shown in the example above.
-- **DSSP styles** on the other hand can parse the eight secondary structure classes returned by programs like DSSP or STRIDE.
+styles come in two categories.
 
-Moreover, users are free to define their own styles, and save them as custom configuration styles
-for later use. For examples in how to create custom styles, check this [Jupyter notebook](https://github.com/bickeld/secstructartist/blob/main/examples/example_artistdef.ipynb).
+**HSL styles** are intended for simple intuitive visualizations of secondary 
+structure. They only support three distinct types of elements:
+
+* `H` = helix
+* `S` = sheet
+* `L` = loop
+
+**DSSP styles** use the full range of secondary structure elements returned by
+software like DSSP or STRIDE. This results in more complex secondary structure
+representations with up to nine distinct elements + unstructured residues:
+
+* `H` = α-helix
+* `B` = residue in isolated β-bridge
+* `E` = extended strand, participates in β ladder
+* `G` = 3<sub>10</sub>-helix
+* `I` = π-helix
+* `P` = κ-helix (poly-proline II helix)
+* `T` = hydrogen-bonded turn
+* `S` = bend
+* `C`, ` ` = unstructured coil
+
+Moreover, users are free to define their own styles, and save them as custom 
+configuration styles for later use. For examples in how to create custom styles, 
+please, refer to this [Jupyter notebook](https://github.com/bickeld/secstructartist/blob/main/examples/example_artistdef.ipynb).
 
 ![styles_overview.png](_dev/images/styles_overview.png)
 
